@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio de Rajosvah Manou</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+  <div class="intro-wrapper">
+    <img src="manou1.jpg" alt="Photo de Manou" class="profile-pic" />
+    <div class="intro-text">
+      <h1>RAJOSVAH Manohisoa Hasimandimby</h1> <hr>
+      <p class="subtitle">Développeur Web Full Stack Junior & Expert Hardware</p>
+    </div>
+  <h1 style="color: #0d47a1;">Bienvenue sur mon portfolio ✨</h1>
+  <p class="intro">
+    Étudiant passionné en informatique, découvrez mes projets et compétences !
+  </p>
+</header>
+
+    <section class="projects">
+      <div class="project-card">
+        <div class="info-button" data-type="académique">❕</div>
+
+        <h2>SONATRA+</h2>
+        <p class="desc">
+          Application web de gestion d'une coopérative Taxi Brousse.
+        </p>
+        <p class="tech">Technologies : PHP, JavaScript, MySQL, HTML/CSS</p>
+        <a href="https://manou.lovestoblog.com" target="_blank" class="btn">Voir le
+          projet</a
+        >
+      </div>
+
+      <div class="project-card">
+        <div class="info-button" data-type="professionnel">❕</div>
+
+        <h2>Projet 1</h2>
+        <p class="desc">Application en cours de développement (détails à venir).</p>
+        <p class="tech">Technologies : à définir</p>
+        <a href="#" class="btn">Voir le projet</a>
+      </div>
+
+      <div class="project-card">
+        <div class="info-button" data-type="académique">❕</div>
+
+        <h2>Projet 2</h2>
+        <p class="desc">Prototype personnel avec de futures fonctionnalités.</p>
+        <p class="tech">Technologies : à définir</p>
+        <a href="#" class="btn">Voir le projet</a>
+      </div>
+    </section>
+
+    <section class="accordion-container">
+  <div class="accordion-item">
+    <button class="accordion-toggle">À propos de moi 👨‍💻</button>
+    <div class="accordion-content">
+      <p>
+        Je m'appelle <strong>Rajosvah Manou</strong>, j'ai 21 ans.<br>
+        Actuellement étudiant en 2ᵉ année de Licence en Informatique (L2), spécialité <strong>DA2I</strong> (Développement d’Applications Internet et Intranet) à <strong>EMIT</strong>, Université de Fianarantsoa.<br><br>
+        Passionné par la résolution de problèmes concrets, je conçois des solutions numériques performantes et adaptées aux besoins réels.
+      </p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+  <button class="accordion-toggle">Compétences ⚙️</button>
+  <div class="accordion-content">
+    <p>
+      Je me spécialise dans le <strong>développement web full-stack</strong> , avec de solides bases en réseaux et une <strong>excellente connaissance du hardware</strong> ainsi que de la maintenance informatique.<br>
+      Passionné par la résolution de problèmes concrets, je conçois des solutions numériques performantes et adaptées aux besoins réels.<br><br>
+
+    </p>
+    <div class="skills-bars">
+      <div class="skill">
+        <span>HTML</span>
+        <div class="progress-bar" data-level="90"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>CSS</span>
+        <div class="progress-bar" data-level="75"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="progress-bar" data-level="65"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>Python</span>
+        <div class="progress-bar" data-level="80"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>PHP</span>
+        <div class="progress-bar" data-level="70"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>Node.js</span>
+        <div class="progress-bar" data-level="65"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>Java</span>
+        <div class="progress-bar" data-level="50"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>C#</span>
+        <div class="progress-bar" data-level="65"><div></div></div>
+      </div>
+      <div class="skill">
+        <span>MySQL</span>
+        <div class="progress-bar" data-level="80"><div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-toggle">Contact 📬</button>
+  <div class="accordion-content contact-section">
+    <div class="contact-item">
+      <i class="fas fa-envelope"></i>
+      <span>Email :</span>
+      <a href="mailto:rajosvahmanou@gmail.com">rajosvahmanou@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <i class="fas fa-phone"></i>
+      <span>Téléphone :</span>
+      <a href="tel:+261388338001">+261 38 83 380 01</a>
+    </div>
+    <div class="contact-item">
+      <i class="fab fa-facebook"></i>
+      <span>Facebook :</span>
+      <a href="https://facebook.com/manou.rajosvah" target="_blank">Manou Rajosvah</a>
+    </div>
+  </div>
+</div>
+
+
+</section>
+
+  </div>
+
+  <script>
+  // Accordion toggle
+  document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+      const isActive = content.classList.contains('active');
+      
+      // Fermer tous les accordéons
+      document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.accordion-toggle').forEach(b => b.classList.remove('active'));
+      
+      if (!isActive) {
+        content.classList.add('active');
+        button.classList.add('active');
+      }
+    });
+  });
+
+  // Animation barres de progression avec couleur dynamique
+  document.querySelectorAll('.progress-bar').forEach(bar => {
+    const level = parseInt(bar.dataset.level, 10);
+    const fill = bar.querySelector('div');
+    fill.style.width = level + '%';
+
+    // Set class by level
+    if (level >= 75) {
+      bar.classList.add('level-high');
+    } else if (level >= 40) {
+      bar.classList.add('level-mid');
+    } else {
+      bar.classList.add('level-low');
+    }
+  });
+
+  // Info button toggle
+document.querySelectorAll('.info-button').forEach(button => {
+  const type = button.dataset.type;
+  const popup = document.createElement('div');
+  popup.className = 'info-popup';
+  popup.innerText = type === 'professionnel' ? 'Projet professionnel' : 'Projet académique';
+  button.parentElement.appendChild(popup);
+
+  button.addEventListener('click', () => {
+    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Cacher si on clique ailleurs
+  document.addEventListener('click', (e) => {
+    if (!button.contains(e.target) && !popup.contains(e.target)) {
+      popup.style.display = 'none';
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
