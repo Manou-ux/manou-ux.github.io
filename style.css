@@ -317,17 +317,7 @@ h1 {
   transition: width 1.2s ease;
 }
 
-/* Rendre la section Compétences déroulante sur petit écran */
-.accordion-item:nth-child(2) .accordion-content.active {
-  max-height: 400px; /* Ajustable selon ton besoin */
-  overflow-y: auto;
-}
-
-.accordion-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.accordion-content::-webkit-scrollbar-thumb {
-  background-color: #1976d2;
-  border-radius: 10px;
+.accordion-content.active {
+  max-height: 2000px; /* ajuste si besoin */
+  padding: 20px;
 }
