@@ -321,3 +321,6 @@ h1 {
   max-height: 2000px; /* ajuste si besoin */
   padding: 20px;
 }
+.contact-section {
+  font-size: 0.85em; /* Réduit la taille globale du texte */
+}
