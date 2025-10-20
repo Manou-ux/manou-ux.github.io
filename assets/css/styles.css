@@ -1,0 +1,719 @@
+/* Variables CSS avec support complet du mode sombre */
+:root {
+    --primary-color: #1976d2;
+    --primary-dark: #0d47a1;
+    --secondary-color: #fce4ec;
+    --text-color: #1f2937;
+    --text-color-light: #6b7280;
+    --bg-color: #ffffff;
+    --card-bg: #f8fafc;
+    --section-bg: #f1f5f9;
+    --border-color: #e2e8f0;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"],
+.dark {
+    --primary-color: #64b5f6;
+    --primary-dark: #2196f3;
+    --secondary-color: #1a237e;
+    --text-color: #f8fafc;
+    --text-color-light: #cbd5e1;
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --section-bg: #1e1e1e;
+    --border-color: #374151;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset complet pour forcer les couleurs */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+html, body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+/* Forcer l'arrière-plan et la couleur de texte pour TOUS les éléments */
+body * {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+
+/* Éléments spécifiques qui doivent garder leur propre background */
+.nav__link,
+.nav__expand,
+.back-to-top,
+button:not(.nav__expand-link),
+a[href].bg-primary,
+a[href].bg-gray-700 {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.nav__link:hover,
+.nav__expand:hover,
+.back-to-top:hover,
+button:not(.nav__expand-link):hover,
+a[href].bg-primary:hover,
+a[href].bg-gray-700:hover {
+    background-color: var(--primary-dark) !important;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.preloader-img {
+    width: 100px;
+    height: 100px;
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color) !important;
+    color: white !important;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.nav__link:hover,
+.nav__link.active-link {
+    background: var(--primary-dark) !important;
+    transform: translateY(-2px);
+}
+
+.nav__expand {
+    background: var(--primary-color) !important;
+    border: none;
+    color: white !important;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.nav__expand:hover {
+    background: var(--primary-dark) !important;
+}
+
+.nav__expand-list {
+    list-style: none;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 25px;
+    padding: 0.5rem;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.nav__expand-list.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav__expand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--text-color) !important;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.nav__expand-link:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+}
+
+/* Sections */
+.section {
+    padding: 5rem 0;
+    background-color: var(--bg-color) !important;
+}
+
+/* Pattern background - s'adapte au mode sombre */
+.pattern-container {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(25, 118, 210, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(25, 118, 210, 0.1) 0%, transparent 50%) !important;
+}
+
+.dark .pattern-container {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(100, 181, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(100, 181, 246, 0.1) 0%, transparent 50%) !important;
+}
+
+/* Skill pills */
+.skill-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--card-bg) !important;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    transition: var(--transition);
+}
+
+.skill-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.skill-pill img {
+    width: 16px;
+    height: 16px;
+}
+
+/* Project items */
+.project-item {
+    transition: var(--transition);
+    border: 1px solid var(--border-color) !important;
+    background-color: var(--card-bg) !important;
+}
+
+.project-item:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+}
+
+.back-to-top:hover {
+    background: var(--primary-dark) !important;
+    transform: translateY(-2px);
+}
+
+/* ===== SURCHARGE DES CLASSES TAILWIND ===== */
+
+/* Backgrounds */
+.bg-white {
+    background-color: var(--card-bg) !important;
+}
+
+.bg-gray-100 {
+    background-color: var(--section-bg) !important;
+}
+
+.bg-gray-700, .bg-gray-800, .bg-gray-900 {
+    background-color: var(--card-bg) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-primary-dark {
+    background-color: var(--primary-dark) !important;
+}
+
+/* Text colors */
+.text-gray-600, .text-gray-700, .text-gray-800 {
+    color: var(--text-color) !important;
+    opacity: 0.9;
+}
+
+.text-gray-300, .text-gray-400, .text-gray-500 {
+    color: var(--text-color-light) !important;
+}
+
+.text-black, .text-gray-900 {
+    color: var(--text-color) !important;
+}
+
+.text-white {
+    color: white !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Border colors */
+.border-gray-200, .border-gray-300 {
+    border-color: var(--border-color) !important;
+}
+
+.border-gray-600, .border-gray-700 {
+    border-color: var(--border-color) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* Divide colors */
+.divide-gray-200 > * + * {
+    border-color: var(--border-color) !important;
+}
+
+.divide-gray-700 > * + * {
+    border-color: var(--border-color) !important;
+}
+
+/* Shadow */
+.shadow-lg, .shadow-md {
+    box-shadow: var(--shadow) !important;
+}
+
+/* Form elements */
+input, textarea, select {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-color-light) !important;
+    opacity: 0.7;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-color) !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1) !important;
+}
+
+.dark input:focus, .dark textarea:focus, .dark select:focus {
+    box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.2) !important;
+}
+
+/* Badges et status */
+.bg-green-100, .bg-blue-100, .bg-purple-100 {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.dark .bg-green-100, .dark .bg-blue-100, .dark .bg-purple-100 {
+    opacity: 0.8;
+}
+
+.text-green-800, .text-blue-800, .text-purple-800 {
+    color: var(--text-color) !important;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+footer * {
+    color: white !important;
+}
+
+/* Download dropdown */
+#download-options {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-item {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav {
+        right: 1rem;
+    }
+    
+    .nav__link,
+    .nav__expand {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Assurer que toutes les images gardent leur apparence */
+img {
+    filter: none !important;
+}
+
+
+/* ===== CORRECTIONS SPÉCIFIQUES POUR LES CARTES PROJETS ===== */
+
+/* Icônes des cartes projets en mode clair */
+.project-item .absolute .backdrop-blur-sm {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.project-item .absolute i {
+    color: #1f2937 !important; /* Couleur foncée pour le mode clair */
+}
+
+/* Texte des schémas/descriptions en mode clair */
+.project-element p.text-sm.text-gray-600 {
+    color: #4b5563 !important; /* Gris foncé pour meilleure lisibilité */
+}
+
+.project-element h3.text-xl.font-semibold {
+    color: #1f2937 !important; /* Texte plus foncé pour les titres */
+}
+
+/* Conserver l'apparence sombre en mode sombre */
+.dark .project-item .absolute .backdrop-blur-sm {
+    background-color: rgba(75, 85, 99, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark .project-item .absolute i {
+    color: #f3f4f6 !important; /* Blanc en mode sombre */
+}
+
+.dark .project-element p.text-sm.text-gray-600 {
+    color: #d1d5db !important; /* Gris clair en mode sombre */
+}
+
+.dark .project-element h3.text-xl.font-semibold {
+    color: #f9fafb !important; /* Blanc pour les titres en mode sombre */
+}
+
+/* Correction spécifique pour les badges de technologies */
+.project-element .skill-pill.backdrop-blur-sm {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: #374151 !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .project-element .skill-pill.backdrop-blur-sm {
+    background-color: rgba(75, 85, 99, 0.3) !important;
+    color: #e5e7eb !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Correction pour les spans de statut */
+.project-element span.text-xs {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: #374151 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .project-element span.text-xs {
+    background-color: rgba(75, 85, 99, 0.3) !important;
+    color: #e5e7eb !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Couleurs spécifiques pour les badges */
+.project-element .bg-green-100 {
+    background-color: rgba(167, 243, 208, 0.3) !important;
+    color: #065f46 !important;
+}
+
+.project-element .bg-blue-100 {
+    background-color: rgba(191, 219, 254, 0.3) !important;
+    color: #1e40af !important;
+}
+
+.project-element .bg-purple-100 {
+    background-color: rgba(221, 214, 254, 0.3) !important;
+    color: #5b21b6 !important;
+}
+
+.dark .project-element .bg-green-100 {
+    background-color: rgba(6, 95, 70, 0.3) !important;
+    color: #a7f3d0 !important;
+}
+
+.dark .project-element .bg-blue-100 {
+    background-color: rgba(30, 64, 175, 0.3) !important;
+    color: #bfdbfe !important;
+}
+
+.dark .project-element .bg-purple-100 {
+    background-color: rgba(91, 33, 182, 0.3) !important;
+    color: #ddd6fe !important;
+}
+
+
+
+
+/* ===== COULEURS SPÉCIFIQUES POUR LES BADGES DE TYPE DE PROJET ===== */
+
+/* Badge PROFESSIONNEL - VERT */
+.project-element span:has(i.ri-briefcase-line) {
+    background-color: rgba(167, 243, 208, 0.3) !important;
+    color: #065f46 !important;
+    border-color: rgba(5, 150, 105, 0.3) !important;
+}
+
+.dark .project-element span:has(i.ri-briefcase-line) {
+    background-color: rgba(6, 95, 70, 0.4) !important;
+    color: #a7f3d0 !important;
+    border-color: rgba(167, 243, 208, 0.2) !important;
+}
+
+/* Badge ACADÉMIQUE - BLEU */
+.project-element span:has(i.ri-graduation-cap-line) {
+    background-color: rgba(191, 219, 254, 0.3) !important;
+    color: #1e40af !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark .project-element span:has(i.ri-graduation-cap-line) {
+    background-color: rgba(30, 64, 175, 0.4) !important;
+    color: #bfdbfe !important;
+    border-color: rgba(191, 219, 254, 0.2) !important;
+}
+
+/* Badge PERSONNEL - VIOLET */
+.project-element span:has(i.ri-user-line) {
+    background-color: rgba(221, 214, 254, 0.3) !important;
+    color: #5b21b6 !important;
+    border-color: rgba(124, 58, 237, 0.3) !important;
+}
+
+.dark .project-element span:has(i.ri-user-line) {
+    background-color: rgba(91, 33, 182, 0.4) !important;
+    color: #ddd6fe !important;
+    border-color: rgba(221, 214, 254, 0.2) !important;
+}
+
+/* Version alternative si la sélection par icône ne fonctionne pas */
+.project-element span.bg-green-100,
+.project-element span:contains("Professionnel") {
+    background-color: rgba(167, 243, 208, 0.3) !important;
+    color: #065f46 !important;
+    border-color: rgba(5, 150, 105, 0.3) !important;
+}
+
+.project-element span.bg-blue-100,
+.project-element span:contains("Académique") {
+    background-color: rgba(191, 219, 254, 0.3) !important;
+    color: #1e40af !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.project-element span.bg-purple-100,
+.project-element span:contains("Personnel") {
+    background-color: rgba(221, 214, 254, 0.3) !important;
+    color: #5b21b6 !important;
+    border-color: rgba(124, 58, 237, 0.3) !important;
+}
+
+.dark .project-element span.bg-green-100,
+.dark .project-element span:contains("Professionnel") {
+    background-color: rgba(6, 95, 70, 0.4) !important;
+    color: #a7f3d0 !important;
+    border-color: rgba(167, 243, 208, 0.2) !important;
+}
+
+.dark .project-element span.bg-blue-100,
+.dark .project-element span:contains("Académique") {
+    background-color: rgba(30, 64, 175, 0.4) !important;
+    color: #bfdbfe !important;
+    border-color: rgba(191, 219, 254, 0.2) !important;
+}
+
+.dark .project-element span.bg-purple-100,
+.dark .project-element span:contains("Personnel") {
+    background-color: rgba(91, 33, 182, 0.4) !important;
+    color: #ddd6fe !important;
+    border-color: rgba(221, 214, 254, 0.2) !important;
+}
+
+
+/* Styles pour le système d'étoiles */
+.stars-rating {
+    display: flex;
+    gap: 1px;
+    align-items: center;
+}
+
+.stars-rating i {
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.stars-rating .ri-star-fill {
+    color: #fbbf24 !important; /* Jaune pour les étoiles pleines */
+}
+
+.stars-rating .ri-star-line {
+    color: #e5e7eb !important; /* Gris pour les étoiles vides */
+}
+
+/* Mode sombre */
+.dark .stars-rating .ri-star-fill {
+    color: #fbbf24 !important; /* Même jaune en mode sombre */
+}
+
+.dark .stars-rating .ri-star-line {
+    color: #4b5563 !important; /* Gris plus foncé en mode sombre */
+}
+
+
+
+/* ===== CORRECTIONS POUR LE BOUTON ENGRENAGE ===== */
+
+.nav__settings {
+    position: relative;
+    margin-top: 20px; /* Décalage vers le bas */
+}
+
+/* Ligne de séparation au-dessus du bouton engrenage */
+.nav__settings::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+}
+
+/* Positionnement correct du menu déroulant */
+.nav__expand-list {
+    position: absolute;
+    right: 60px; /* S'ouvre sur la gauche du bouton */
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 25px;
+    padding: 0.5rem;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    min-width: 140px;
+}
+
+.nav__expand-list.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Styles pour les liens du menu déroulant */
+.nav__expand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--text-color) !important;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: var(--transition);
+    white-space: nowrap;
+    font-size: 0.875rem;
+}
+
+.nav__expand-link:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav__settings {
+        margin-top: 15px;
+    }
+    
+    .nav__expand-list {
+        right: 50px;
+        min-width: 130px;
+    }
+}
