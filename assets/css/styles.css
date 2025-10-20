@@ -793,3 +793,43 @@ img {
         line-height: 1.6;
     }
 }
+
+/* ===== CORRECTIONS POUR LA NAVIGATION ===== */
+
+/* Supprimer l'arrière-plan rectangulaire des boutons de navigation */
+.nav__list {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.nav__list::before,
+.nav__list::after {
+    display: none !important;
+}
+
+/* S'assurer que chaque élément de liste est transparent */
+.nav__list li {
+    background: transparent !important;
+}
+
+/* Bouton settings spécifique */
+.nav__settings {
+    background: transparent !important;
+}
+
+/* Supprimer la ligne de séparation si elle pose problème */
+.nav__settings::before {
+    display: none !important;
+}
+
+/* Menu déroulant - garder son style mais sans affecter les boutons principaux */
+.nav__expand-list {
+    background: var(--card-bg) !important;
+    /* Conserver le style du menu déroulant */
+}
+
+/* S'assurer que le conteneur principal nav est transparent */
+.nav {
+    background: transparent !important;
+}
