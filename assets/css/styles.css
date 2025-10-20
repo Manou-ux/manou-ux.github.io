@@ -775,3 +775,21 @@ img {
         display: block !important;
     }
 }
+
+/* Correction de l'espacement des paragraphes en mode desktop seulement */
+@media (min-width: 768px) {
+    #about .text-justify {
+        text-align: left;
+        line-height: 1.5;
+        word-spacing: normal;
+        letter-spacing: normal;
+    }
+}
+
+/* Sur mobile, garder l'alignement justifié normal */
+@media (max-width: 767px) {
+    #about .text-justify {
+        text-align: justify;
+        line-height: 1.6;
+    }
+}
