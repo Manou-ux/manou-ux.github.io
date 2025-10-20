@@ -7,15 +7,25 @@ window.addEventListener('load', () => {
     }, 1000);
 });
 
-// Navigation expand
+// Navigation expand - Version corrigée
 const navExpand = document.getElementById('nav-expand');
 const navExpandList = document.getElementById('nav-expand-list');
 const navExpandIcon = document.getElementById('nav-expand-icon');
 
-navExpand.addEventListener('click', () => {
+navExpand.addEventListener('click', (e) => {
+    e.stopPropagation(); // Empêche la propagation du clic
     navExpandList.classList.toggle('show');
-    navExpandIcon.classList.toggle('ri-add-line');
+    navExpandIcon.classList.toggle('ri-settings-3-line');
     navExpandIcon.classList.toggle('ri-close-line');
+});
+
+// Fermer le menu si on clique ailleurs
+document.addEventListener('click', (e) => {
+    if (!navExpand.contains(e.target) && !navExpandList.contains(e.target)) {
+        navExpandList.classList.remove('show');
+        navExpandIcon.classList.remove('ri-close-line');
+        navExpandIcon.classList.add('ri-settings-3-line');
+    }
 });
 
 // Theme toggle - Version corrigée
