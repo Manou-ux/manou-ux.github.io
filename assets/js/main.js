@@ -150,22 +150,21 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Form submission
+// Form submission - Laisser Formspree gérer l'envoi
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+        // Laisser Formspree gérer l'envoi, on peut juste afficher un message
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Envoi en cours...';
+        submitBtn.disabled = true;
         
-        // Récupération des données du formulaire
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-        
-        // Simulation d'envoi (remplacer par votre logique d'envoi)
-        console.log('Données du formulaire:', data);
-        
-        // Message de succès
-        alert('Merci pour votre message ! Je vous répondrai dans les plus brefs délais.');
-        contactForm.reset();
+        // Réactiver le bouton après un délai (au cas où)
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 5000);
     });
 }
 
