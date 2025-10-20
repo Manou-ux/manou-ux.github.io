@@ -643,11 +643,16 @@ img {
     color: #4b5563 !important; /* Gris plus foncé en mode sombre */
 }
 
+
+
+/* ===== CORRECTIONS POUR LE BOUTON ENGRENAGE ===== */
+
 .nav__settings {
-    margin-top: 20px; /* Ajustez cette valeur selon le décalage souhaité */
     position: relative;
+    margin-top: 20px; /* Décalage vers le bas */
 }
 
+/* Ligne de séparation au-dessus du bouton engrenage */
 .nav__settings::before {
     content: '';
     position: absolute;
@@ -656,6 +661,59 @@ img {
     transform: translateX(-50%);
     width: 2px;
     height: 10px;
-    background-color: rgba(255, 255, 255, 0.3); /* Couleur de séparation */
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 1px;
+}
+
+/* Positionnement correct du menu déroulant */
+.nav__expand-list {
+    position: absolute;
+    right: 60px; /* S'ouvre sur la gauche du bouton */
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 25px;
+    padding: 0.5rem;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    min-width: 140px;
+}
+
+.nav__expand-list.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Styles pour les liens du menu déroulant */
+.nav__expand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--text-color) !important;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: var(--transition);
+    white-space: nowrap;
+    font-size: 0.875rem;
+}
+
+.nav__expand-link:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav__settings {
+        margin-top: 15px;
+    }
+    
+    .nav__expand-list {
+        right: 50px;
+        min-width: 130px;
+    }
 }
