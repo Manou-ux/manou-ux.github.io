@@ -641,6 +641,7 @@ img {
 
 .dark .stars-rating .ri-star-line {
     color: #4b5563 !important; /* Gris plus foncé en mode sombre */
+
 }
 
 
@@ -716,4 +717,36 @@ img {
         right: 50px;
         min-width: 130px;
     }
+}
+
+/* ===== CORRECTIONS POUR LA SECTION À PROPOS ===== */
+
+/* Correction de l'espacement des mots */
+#about p {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    line-height: 1.6 !important;
+}
+
+/* Assurer un bon espacement sur mobile */
+@media (max-width: 768px) {
+    #about p {
+        text-align: left !important;
+        word-spacing: normal !important;
+        letter-spacing: normal !important;
+        line-height: 1.5 !important;
+    }
+    
+    #about .text-justify {
+        text-align: justify;
+        hyphens: auto;
+    }
+}
+
+/* Correction spécifique pour les paragraphes */
+#about .mb-4 {
+    margin-bottom: 1rem;
+    text-align: justify;
+    word-spacing: normal;
+    letter-spacing: normal;
 }
