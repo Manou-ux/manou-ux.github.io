@@ -750,3 +750,28 @@ img {
     word-spacing: normal;
     letter-spacing: normal;
 }
+/* Correction de l'espacement des paragraphes */
+.text-justify {
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.leading-relaxed {
+    line-height: 1.6;
+}
+
+/* Afficher la deuxième image sur mobile */
+@media (max-width: 768px) {
+    .md\\:order-first {
+        order: -1;
+    }
+    
+    .md\\:order-last {
+        order: 1;
+    }
+    
+    /* Assurer que l'image s'affiche sur mobile */
+    .md\\:block {
+        display: block !important;
+    }
+}
