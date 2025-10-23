@@ -852,6 +852,49 @@ img {
     }
 }
 
+/* S'assurer que l'animation fonctionne sur tous les appareils */
+.floating-avatar img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    border-radius: 50%;
+    box-shadow: var(--shadow);
+    display: block; /* Important pour mobile */
+}
+
+/* Version desktop */
+@media (min-width: 768px) {
+    .floating-avatar img {
+        width: 192px;
+        height: 192px;
+    }
+}
+
+/* Version mobile spécifique */
+@media (max-width: 767px) {
+    .floating-avatar {
+        animation: floating-mobile 3s ease-in-out infinite;
+    }
+    
+    .floating-avatar img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@keyframes floating-mobile {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 /* Styles pour les boutons avec largeurs égales */
 .btn-primary, .btn-outline {
     flex: 1;
@@ -932,10 +975,16 @@ img {
 @media (max-width: 640px) {
     .btn-primary, .btn-outline {
         min-width: 100%;
+        width: 100%;
     }
     
     .floating-avatar img {
-        width: 120px !important;
-        height: 120px !important;
+        width: 140px !important;
+        height: 140px !important;
+    }
+    
+    /* Conteneur des boutons en colonne sur mobile */
+    .flex-col {
+        gap: 12px;
     }
 }
