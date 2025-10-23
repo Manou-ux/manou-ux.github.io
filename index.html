@@ -98,24 +98,33 @@
     </ul>
 </nav>
     <main class="container mx-auto px-4">
-        <!-- Section Accueil -->
-        <section class="section min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden" id="home">
-            <div class="absolute inset-0 z-0 pattern-container p-4"></div>
-            
-            <div class="relative z-10 flex flex-col items-center justify-center p-4 rounded-lg">
-                <img src="assets/images/manou.jpg" alt="Photo de Rajosvah Manou" class="w-60 h-60 md:w-65 md:h-65 mb-6 rounded-full border-4 border-primary shadow-xl">
-                
-                <div class="flex flex-col md:flex-row md:items-center md:space-x-2 text-center md:text-left mb-3">
-                    <h1 class="text-4xl md:text-5xl font-bold">Bonjour, je suis</h1>
-                    <h1 class="text-4xl md:text-5xl font-bold md:mb-0 text-primary">Rajosvah Manou</h1>
-                </div>
-                <p class="text-xl md:text-2xl mb-6 mt-3">Développeur Web Full Stack Junior & Technicien Hardware</p>
-                <div class="space-x-4 flex flex-wrap justify-center gap-4">
-                    <a href="#contact" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg">Me Contacter</a>
-                    <a href="#projects" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg">Voir mes projets</a>
-                </div>
-            </div>
-        </section>
+<!-- Section Accueil -->
+<section class="section min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden" id="home">
+    <div class="absolute inset-0 z-0 pattern-container p-4"></div>
+    
+    <div class="relative z-10 flex flex-col items-center justify-center p-4 rounded-lg">
+        <!-- Photo de profil flottante -->
+        <div class="floating-avatar mb-8">
+            <img src="assets/images/manou.jpg" alt="Photo de Rajosvah Manou" class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-primary shadow-2xl">
+        </div>
+        
+        <div class="flex flex-col md:flex-row md:items-center md:space-x-2 text-center md:text-left mb-6">
+            <h1 class="text-4xl md:text-5xl font-bold">Bonjour, je suis</h1>
+            <h1 class="text-4xl md:text-5xl font-bold md:mb-0 text-primary">Rajosvah Manou</h1>
+        </div>
+        <p class="text-xl md:text-2xl mb-8 mt-3">Développeur Web Full Stack Junior & Technicien Hardware</p>
+        
+        <!-- Boutons avec largeurs égales -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto">
+            <a href="#contact" class="btn-primary bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 text-center">
+                Me Contacter
+            </a>
+            <a href="#projects" class="btn-outline border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 text-center">
+                Voir mes projets
+            </a>
+        </div>
+    </div>
+</section>
 
         <!-- Section À Propos -->
         <section class="section py-16" id="about">
