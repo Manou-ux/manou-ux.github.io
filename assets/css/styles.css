@@ -665,3 +665,19 @@ img {
         gap: 12px;
     }
 }
+
+/* Désactiver complètement l'alignement justifié */
+#about p.text-justify,
+.project-element p.text-sm.text-gray-600 {
+    text-align: left !important;
+    text-justify: auto;
+    word-spacing: normal;
+    letter-spacing: normal;
+    hyphens: none;
+}
+
+/* Garder une bonne lisibilité */
+#about p,
+.project-element p.text-sm.text-gray-600 {
+    line-height: 1.6;
+}
