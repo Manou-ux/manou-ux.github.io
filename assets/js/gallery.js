@@ -205,37 +205,103 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         'hospital-java': [
             {
-                src: 'assets/images/hospitalJAVA.png',
+                src: 'assets/images/autres/login.png',
                 alt: 'Application hospitalière Java',
                 desc: 'Application desktop de gestion hospitalière'
             },
             {
-                src: 'assets/images/hospital1.jpg',
+                src: 'assets/images/autres/menu.png',
                 alt: 'Gestion des patients',
                 desc: 'Interface de gestion des dossiers patients'
             },
             {
-                src: 'assets/images/hospital2.jpg',
-                alt: 'Gestion des rendez-vous',
-                desc: 'Calendrier des rendez-vous médicaux'
+                src: 'assets/images/autres/add.png',
+                alt: 'CRUD',
+                desc: 'Ajout patient'
+            },
+            {
+                src: 'assets/images/autres/maj.png',
+                alt: 'CRUD',
+                desc: 'modifier patient'
+            },
+            {
+                src: 'assets/images/autres/liste.png',
+                alt: 'CRUD',
+                desc: 'liste patient'
+            },
+            {
+                src: 'assets/images/autres/stat-sang.png',
+                alt: 'Statistiques',
+                desc: 'statistiques sanguin'
+            },
+            {
+                src: 'assets/images/autres/stat-sex.png',
+                alt: 'Statistiques',
+                desc: 'statistiques sexe'
+            },
+            {
+                src: 'assets/images/autres/diag.png',
+                alt: 'diagnostic',
+                desc: 'diagnostique d\'un patient'
+            },
+            {
+                src: 'assets/images/autres/fiche1.png',
+                alt: 'FICHE',
+                desc: 'liste des fiche medicales'
+            },
+            {
+                src: 'assets/images/autres/fiche2.png',
+                alt: 'FICHE',
+                desc: 'Fiche medicales'
             }
         ],
         'csharp-sonatra': [
             {
-                src: 'assets/images/sonatraCsharp.png',
+                src: 'assets/images/autres/chargement.png',
                 alt: 'Application C# Sonatra',
                 desc: 'Version desktop du projet SONATRA+ en C#'
             },
             {
-                src: 'assets/images/csharp1.jpg',
+                src: 'assets/images/autres/connexion.png',
                 alt: 'Interface principale',
-                desc: 'Interface Windows Forms de l\'application'
+                desc: 'Login session'
             },
             {
-                src: 'assets/images/csharp2.jpg',
-                alt: 'Gestion des données',
-                desc: 'Base de données SQL Server intégrée'
+                src: 'assets/images/autres/dash.png',
+                alt: 'MENU PRINCIPAL',
+                desc: 'Menu principale'
+            },
+            {
+                src: 'assets/images/autres/voiture.png',
+                alt: 'CRUD',
+                desc: 'Crud voiture'
+            },
+            {
+                src: 'assets/images/autres/chauffeur.png',
+                alt: 'CRUD',
+                desc: 'Crud chauffeur'
+            },
+            {
+                src: 'assets/images/autres/trajet.png',
+                alt: 'CRUD',
+                desc: 'Crud trajet'
+            },
+            {
+                src: 'assets/images/autres/reservation.png',
+                alt: 'CRUD',
+                desc: 'CRUD reservation'
+            },
+            {
+                src: 'assets/images/autres/stats.png',
+                alt: 'statistiques',
+                desc: 'statistique des reservations'
+            },
+            {
+                src: 'assets/images/autres/facts.png',
+                alt: 'facturation',
+                desc: 'impression des factures'
             }
+
         ],
         hardware: [
             {
@@ -244,12 +310,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 desc: 'Assemblage complet de PC gamer'
             },
             {
-                src: 'assets/images/hardware1.jpg',
+                src: 'assets/images/autres/pc1.jpg',
                 alt: 'Diagnostic matériel',
                 desc: 'Diagnostic et dépannage hardware'
             },
             {
-                src: 'assets/images/hardware2.jpg',
+                src: 'assets/images/autres/pc2.png',
+                alt: 'Optimisation',
+                desc: 'Optimisation de performances matérielles'
+            },
+            {
+                src: 'assets/images/autres/pc4.jpeg',
+                alt: 'Optimisation',
+                desc: 'Optimisation de performances matérielles'
+            },
+            {
+                src: 'assets/images/autres/pc5.jpeg',
+                alt: 'Optimisation',
+                desc: 'Optimisation de performances matérielles'
+            },
+            {
+                src: 'assets/images/autres/pc6.jpeg',
+                alt: 'Optimisation',
+                desc: 'Optimisation de performances matérielles'
+            },
+            {
+                src: 'assets/images/autres/pc7.jpeg',
+                alt: 'Optimisation',
+                desc: 'Optimisation de performances matérielles'
+            },
+            {
+                src: 'assets/images/autres/pc8.jpeg',
                 alt: 'Optimisation',
                 desc: 'Optimisation de performances matérielles'
             }
