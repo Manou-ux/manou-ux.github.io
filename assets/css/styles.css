@@ -45,7 +45,7 @@ body {
 .nav__link,
 .nav__expand,
 .back-to-top,
-button:not(.nav__expand-link) {
+button:not(.nav__expand-link):not(.gallery-image) {
     background-color: var(--primary-color) !important;
     color: white !important;
 }
@@ -820,3 +820,37 @@ img {
         max-height: 60vh;
     }
 }
+
+/* Fix pour les boutons Aperçu - à mettre à la fin du fichier */
+.gallery-image {
+    background-color: transparent !important;
+    color: #374151 !important;
+    border: 1px solid #d1d5db !important;
+}
+
+.dark .gallery-image {
+    color: #d1d5db !important;
+    border-color: #4b5563 !important;
+}
+
+.gallery-image:hover {
+    background-color: #f3f4f6 !important;
+    color: #3b82f6 !important;
+}
+
+.dark .gallery-image:hover {
+    background-color: #374151 !important;
+    color: #3b82f6 !important;
+}
+
+/* Corriger la règle problématique existante */
+button:not(.nav__expand-link) {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+button.gallery-image {
+    background-color: transparent !important;
+    color: #374151 !important;
+}
+
