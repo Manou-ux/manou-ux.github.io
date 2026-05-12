@@ -906,13 +906,18 @@ footer {
     }
     
     .nav-menu {
-        position: fixed; inset: 0; z-index: 999;
-        background: var(--bg);
+        position: fixed; inset: 0; z-index: 998;
+        background: rgba(13, 13, 13, 0.951);
+        backdrop-filter: blur(16px);
         display: flex; flex-direction: column;
         align-items: center; justify-content: center;
         gap: 2rem;
         transform: translateX(100%);
         transition: transform 0.4s var(--ease);
+        height: 100dvh; /* dynamic viewport height pour iOS */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        -webkit-backdrop-filter: blur(16px);
     }
     .nav-menu.open { transform: translateX(0); }
     .nav-menu ul { flex-direction: column; align-items: center; gap: 2rem; }
@@ -988,5 +993,16 @@ footer {
     background: transparent !important; 
     color: inherit !important;
     border-color: rgba(255,255,255,0.2) !important;
+}
+
+/* Désactiver le curseur personnalisé sur mobile et tablette */
+@media (max-width: 1024px) {
+    .cursor-dot, .cursor-ring {
+        display: none !important;
+    }
+    
+    body, body * {
+        cursor: auto !important;
+    }
 }
 
