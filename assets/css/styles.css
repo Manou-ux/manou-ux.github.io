@@ -960,3 +960,17 @@ footer {
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(134, 134, 129, 0.2);
 }
+
+.btn-private {
+    opacity: 0.5;
+    cursor: not-allowed !important; 
+    filter: grayscale(100%);
+    pointer-events: auto !important; 
+    text-decoration: none;
+}
+
+.btn-private:hover {
+    background: transparent !important; 
+    color: inherit !important;
+    border-color: rgba(255,255,255,0.2) !important;
+}
