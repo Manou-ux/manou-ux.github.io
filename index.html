@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajosvah Manou — Dev</title>
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-text">
+            <span>R</span><span>A</span><span>J</span><span>O</span><span>S</span><span>V</span><span>A</span><span>H</span>
+        </div>
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="mainNav">
+        <a href="#home" class="nav-logo">Portfolio<span class="nav-logo-dot">.</span></a>
+        <button class="burger" id="burgerBtn" aria-label="Menu">
+            <span></span><span></span>
+        </button>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="#home" data-index="00">Accueil</a></li>
+                <li><a href="#about" data-index="01">À propos</a></li>
+                <li><a href="#skills" data-index="02">Compétences</a></li>
+                <li><a href="#projects" data-index="03">Projets</a></li>
+                <li><a href="#experience" data-index="04">Parcours</a></li>
+                <li><a href="#contact" data-index="05">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section id="home" class="hero">
+        <div class="hero-noise"></div>
+        <div class="hero-grid">
+            <div class="hero-left">
+                <p class="hero-label reveal"><span class="label-line"></span>Développeur & Technicien Informatique</p>
+                <h1 class="hero-title reveal">
+                    <em>Rajosvah</em><br>
+                    <strong>Manou</strong>
+                </h1>
+                <p class="hero-sub reveal">Je transforme des idées en réalités digitales — du frontend au backend, du code au composant.</p>
+                <div class="hero-cta reveal">
+                    <a href="#projects" class="btn-primary">Voir mes projets <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn-ghost">Me contacter</a>
+                </div>
+            </div>
+            <div class="hero-right reveal">
+                <div class="hero-img-frame">
+                    <img src="assets/images/manou.jpg" alt="Rajosvah Manou">
+                    <div class="img-badge">
+                        <span>Disponible</span>
+                        <div class="badge-dot"></div>
+                    </div>
+                </div>
+                <div class="hero-stat-strip">
+                    <div class="stat">
+                        <span class="stat-num">3+</span>
+                        <span class="stat-label">ans d'expérience</span>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat">
+                        <span class="stat-num">10+</span>
+                        <span class="stat-label">projets livrés</span>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat">
+                        <span class="stat-num">L3</span>
+                        <span class="stat-label">Informatique - EMIT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ ABOUT ═══════════════ -->
+    <section id="about" class="about section-pad">
+        <div class="section-tag reveal">
+            <span class="tag-num">01</span>
+            <span class="tag-title">À propos</span>
+        </div>
+        <div class="about-grid">
+            <div class="about-left reveal">
+                <h2 class="big-heading">Qui suis-je<em>?</em></h2>
+                <div class="about-decor"></div>
+            </div>
+            <div class="about-right">
+                <p class="about-lead reveal">Je suis <strong>Rajosvah Manohisoa Hasimandimby</strong>, 22 ans. Étudiant en 3ᵉ année de Licence Informatique — Mention DA2I (Développement d'Applications Internet et Intranet) à EMIT, Université de Fianarantsoa.</p>
+                <p class="about-body reveal">Chaque projet est une nouvelle aventure où j'explore des solutions innovantes pour répondre aux défis technologiques d'aujourd'hui. Je valorise la précision, qu'il s'agisse d'architecture logicielle, de performance système ou de stabilité matérielle.</p>
+                <p class="about-body reveal">En constante évolution, je m'intéresse particulièrement aux nouvelles technologies émergentes : l'IA, la réalité augmentée et les expériences immersives.</p>
+                <div class="about-dl reveal">
+                    <button class="dl-trigger" id="dlTrigger">
+                        <i class="fas fa-download"></i> Télécharger mon CV
+                        <i class="fas fa-chevron-down dl-chevron"></i>
+                    </button>
+                    <div class="dl-options" id="dlOptions">
+                        <a href="cv.pdf" download class="dl-opt pdf"><i class="fas fa-file-pdf"></i> Format PDF</a>
+                        <a href="cv.zip" download class="dl-opt img"><i class="fas fa-file-image"></i> Format Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════ SKILLS ═══════════════ -->
+    <section id="skills" class="skills section-pad">
+        <div class="section-tag reveal">
+            <span class="tag-num">02</span>
+            <span class="tag-title">Expertise</span>
+        </div>
+        <h2 class="section-heading reveal">Expertise <em>Technique</em></h2>
+
+        <div class="skills-tabs reveal">
+            <button class="tab-btn active" data-tab="lang">Langages</button>
+            <button class="tab-btn" data-tab="frontend">Frontend & Backend</button>
+            <button class="tab-btn" data-tab="data">Data & Outils</button>
+            <button class="tab-btn" data-tab="network">Réseau & Conception</button>
+            <button class="tab-btn" data-tab="software">Software & Hardware</button>
+        </div>
+
+        <div class="skills-panels">
+            <!-- ========== LANGAGES ========== -->
+            <div class="skills-panel active" data-panel="lang">
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fab fa-js sk-icon"></i><span>JavaScript / TypeScript</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="Java"><span>Java (SE)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://img.icons8.com/color/48/c-sharp-logo.png" alt="C#"><span>C# (.NET)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python"><span>Python</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/php/php-icon.svg" alt="PHP"><span>PHP</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fab fa-html5 sk-icon"></i><span>HTML5 / CSS3</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="95"></div></div><span class="sk-pct">95%</span>
+                </div>
+            </div>
+
+            <!-- ========== FRONTEND & BACKEND ========== -->
+            <div class="skills-panel" data-panel="frontend">
+                <!-- Frontend -->
+                <div class="skill-section-title">Frontend</div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="React"><span>React.js</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/vuejs/vuejs-icon.svg" alt="Vue.js"><span>Vue.js</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="70"></div></div><span class="sk-pct">70%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fab fa-css3-alt sk-icon"></i><span>Tailwind CSS</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-paint-brush sk-icon"></i><span>Design UI/UX</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/wordpress/wordpress-icon.svg" alt="WordPress"><span>WordPress</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="100"></div></div><span class="sk-pct">100%</span>
+                </div>
+
+                <!-- Petit espace simple entre Frontend et Backend -->
+                <div style="margin: 1px 0;"></div>
+
+                <!-- Backend -->
+                <div class="skill-section-title">Backend</div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="Spring Boot"><span>Spring Boot</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/dotnet/dotnet-icon.svg" alt="ASP.NET"><span>ASP.NET Core</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="70"></div></div><span class="sk-pct">70%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" alt="Node.js"><span>Node.js / Express</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/laravel/laravel-icon.svg" alt="Laravel"><span>Laravel</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://cdn.worldvectorlogo.com/logos/flask.svg" alt="Flask"><span>Flask</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="60"></div></div><span class="sk-pct">60%</span>
+                </div>
+            </div>
+
+            <!-- ========== DATA & OUTILS ========== -->
+            <div class="skills-panel" data-panel="data">
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg" alt="MySQL"><span>MySQL</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git"><span>Git / GitHub / GitLab</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman"><span>Postman / API Testing</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+            </div>
+
+            <!-- ========== RÉSEAU & CONCEPTION ========== -->
+            <div class="skills-panel" data-panel="network">
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-network-wired sk-icon"></i><span>Programmation réseau (TCP/UDP/IP, HTTP)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-shield-alt sk-icon"></i><span>Administration réseau / Sécurité</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="65"></div></div><span class="sk-pct">65%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-project-diagram sk-icon"></i><span>UML (Modélisation)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-database sk-icon"></i><span>MERISE II (MCD / MLD / MPD)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+            </div>
+
+            <!-- ========== SOFTWARE & HARDWARE ========== -->
+            <div class="skills-panel" data-panel="software">
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-desktop sk-icon"></i><span>Java SE (Desktop / Swing / JavaFX)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-desktop sk-icon"></i><span>C# (Desktop / WinForms / WPF)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-mobile-alt sk-icon"></i><span>Flutter (Mobile - iOS/Android)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="65"></div></div><span class="sk-pct">65%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-code sk-icon"></i><span>Architecture logicielle</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><i class="fas fa-microchip sk-icon"></i><span>Hardware (matériel informatique)</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="100"></div></div><span class="sk-pct">100%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PROJECTS ═══════════════ -->
+    <section id="projects" class="projects section-pad">
+        <div class="section-tag reveal">
+            <span class="tag-num">03</span>
+            <span class="tag-title">Réalisations</span>
+        </div>
+        <h2 class="section-heading reveal">Mes <em>Projets</em></h2>
+        <p class="section-sub reveal">Mes projets témoignent de ma maîtrise de technologies variées et de ma capacité à m'adapter à différents environnements.</p>
+
+        <div class="projects-list">
+            <!-- MINAE -->
+            <article class="proj-item reveal" data-num="01">
+                <div class="proj-img">
+                    <img src="assets/images/MINAE.png" alt="MINAE">
+                </div>
+                <div class="proj-body">
+                    <div class="proj-top">
+                        <h3 class="proj-title">Suivi des Dossiers du Ministère</h3>
+                        <span class="proj-type">App Web</span>
+                    </div>
+                    <p class="proj-desc">Application web développée pour le Ministère de l'Agriculture et de l'Élevage (MINAE) — Anosy, Antananarivo. Centralise le suivi des dossiers, déployée sur serveur IIS.</p>
+                    <div class="proj-tags">
+                        <span>Laravel</span><span>Tailwind CSS</span><span>Blade</span><span>JavaScript</span><span>PostgreSQL</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="#" class="proj-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- FlowlessTech -->
+            <article class="proj-item reveal" data-num="02">
+                <div class="proj-img">
+                    <img src="assets/images/flowlesstech.png" alt="FlowlessTech">
+                </div>
+                <div class="proj-body">
+                    <div class="proj-top">
+                        <h3 class="proj-title">FlowlessTech</h3>
+                        <span class="proj-type">E-commerce</span>
+                    </div>
+                    <p class="proj-desc">Site e-commerce moderne dédié à la vente de PC gamer et matériel informatique. Gestion complète des produits, panier, commandes et paiements. Design responsive et optimisé.</p>
+                    <div class="proj-tags">
+                        <span>WordPress</span><span>WooCommerce</span><span>HTML/CSS</span><span>JavaScript</span><span>MySQL</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="#" class="proj-link-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SONATRA+ Web -->
+            <article class="proj-item reveal" data-num="03">
+                <div class="proj-img">
+                    <img src="assets/images/sonatraJS.png" alt="SONATRA+">
+                </div>
+                <div class="proj-body">
+                    <div class="proj-top">
+                        <h3 class="proj-title">SONATRA+</h3>
+                        <span class="proj-type">App Web</span>
+                    </div>
+                    <p class="proj-desc">Application de gestion complète pour coopérative de taxi-brousse. Gestion des trajets, chauffeurs, véhicules, réservations et facturation.</p>
+                    <div class="proj-tags">
+                        <span>Node.js</span><span>Express.js</span><span>MySQL</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="#" class="proj-link-btn"><i class="fas fa-external-link-alt"></i> Essayer</a>
+                        <a href="#" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </div>
+            </article>
+
+<div id="hiddenProjects" style="display: none;">
+            <!-- Hospital Java -->
+            <article class="proj-item reveal" data-num="04">
+                <div class="proj-img">
+                    <img src="assets/images/hospitalJAVA.png" alt="Hospitalier Java">
+                </div>
+                <div class="proj-body">
+                    <div class="proj-top">
+                        <h3 class="proj-title">Gestion Hospitalière</h3>
+                        <span class="proj-type">Desktop Java</span>
+                    </div>
+                    <p class="proj-desc">Application desktop de gestion hospitalière — patients, données médicales, prescriptions et fiches médicales. Développée en Java avec NetBeans.</p>
+                    <div class="proj-tags">
+                        <span>Java</span><span>MySQL</span><span>NetBeans</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="#" class="proj-link-btn"><i class="fas fa-external-link-alt"></i> Essayer</a>
+                        <a href="#" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SONATRA+ C# -->
+            <article class="proj-item reveal" data-num="05">
+                <div class="proj-img">
+                    <img src="assets/images/sonatraCsharp.png" alt="SONATRA+ C#">
+                </div>
+                <div class="proj-body">
+                    <div class="proj-top">
+                        <h3 class="proj-title">SONATRA+ (C#)</h3>
+                        <span class="proj-type">Desktop C#</span>
+                    </div>
+                    <p class="proj-desc">Version desktop du projet SONATRA+ développée en C# avec interface Windows Forms et base de données SQL Server.</p>
+                    <div class="proj-tags">
+                        <span>C#</span><span>SQL Server</span><span>Visual Studio</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="#" class="proj-link-btn"><i class="fas fa-external-link-alt"></i> Essayer</a>
+                        <a href="#" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Hardware -->
+            <article class="proj-item reveal" data-num="06">
+                <div class="proj-img">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1170&q=80" alt="Hardware">
+                </div>
+                <div class="proj-body">
+                    <div class="proj-top">
+                        <h3 class="proj-title">Expertise Hardware</h3>
+                        <span class="proj-type">Matériel</span>
+                    </div>
+                    <p class="proj-desc">Assemblage complet d'UC, diagnostic matériel, maintenance préventive et corrective, conseils d'achat et d'optimisation de systèmes informatiques.</p>
+                    <div class="proj-tags">
+                        <span>Assemblage</span><span>Diagnostic</span><span>Maintenance</span><span>Optimisation</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="#contact" class="proj-link-btn">Me contacter</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+</div>
+
+<!-- Bouton Voir plus -->
+<div class="projects-more-btn-container reveal">
+    <button id="toggleProjectsBtn" class="btn-primary btn-more-projects">
+        Voir plus <i class="fas fa-arrow-down"></i>
+    </button>
+</div>
+
+
+    </section>
+
+    <!-- ═══════════════ EXPERIENCE ═══════════════ -->
+    <section id="experience" class="experience section-pad">
+        <div class="section-tag reveal">
+            <span class="tag-num">04</span>
+            <span class="tag-title">Parcours</span>
+        </div>
+        <h2 class="section-heading reveal">Expérience & <em>Formation</em></h2>
+
+        <div class="timeline-wrapper">
+            <div class="tl-col">
+                <h3 class="tl-col-title reveal"><i class="fas fa-briefcase"></i> Expériences</h3>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">2025</span>
+                        <h4>Stage — Dev Web Full Stack</h4>
+                        <p>Développement d'une application web pour centraliser le suivi des dossiers au Ministère de l'Agriculture et de l'Élevage (MINAE) — Anosy, Antananarivo.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">2025</span>
+                        <h4>Secrétaire Administrative (DRH p.i.)</h4>
+                        <p>Gestion des courriers, classement et suivi des dossiers administratifs, support à la DRH — Ministère de l'Agriculture et de l'Élevage.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">2024 – 2025</span>
+                        <h4>Développeur Full Stack</h4>
+                        <p>Développement de solutions web complètes, de la conception à la mise en production. Intégration d'APIs, optimisation SEO, backend Node.js et Python.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">2023 – 2025</span>
+                        <h4>Développeur Web Junior</h4>
+                        <p>Première expérience professionnelle. Sites e-commerce et applications web. Apprentissage des bonnes pratiques et méthodologies agiles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-divider"></div>
+
+            <div class="tl-col">
+                <h3 class="tl-col-title reveal"><i class="fas fa-graduation-cap"></i> Formation</h3>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot accent"></div>
+                    <div class="tl-content">
+                        <span class="tl-date tl-current">2025 – 2026 · En cours</span>
+                        <h4>L3 — Mention DA2I</h4>
+                        <p>EMIT, Université de Fianarantsoa. Architectures distribuées, sécurité informatique, gestion de projet, développement internet et intranet.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">2024 – 2025 · Validée</span>
+                        <h4>L2 — Licence Informatique</h4>
+                        <p>EMIT, Université de Fianarantsoa. Algorithmique avancée, bases de données relationnelles, architectures client-serveur.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">2023 – 2024 · Validée</span>
+                        <h4>L1 — Licence Informatique</h4>
+                        <p>EMIT, Université de Fianarantsoa. Bases fondamentales : algorithmique, programmation structurée, architecture des ordinateurs.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">2022 – 2023 · Obtenu</span>
+                        <h4>Baccalauréat Scientifique (Série S)</h4>
+                        <p>Lycée Moderne Ampefiloha (LMA), Antananarivo. Mathématiques et sciences physiques.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ CONTACT ═══════════════ -->
+    <section id="contact" class="contact section-pad">
+        <div class="section-tag reveal">
+            <span class="tag-num">05</span>
+            <span class="tag-title">Contact</span>
+        </div>
+        <h2 class="section-heading reveal">Travaillons <em>Ensemble</em></h2>
+
+        <div class="contact-grid">
+            <div class="contact-left reveal">
+                <p class="contact-intro">Disponible pour des missions freelance, des collaborations ou un poste à temps plein. N'hésitez pas à me contacter !</p>
+
+                <div class="contact-details">
+                    <a href="mailto:rajosvahmanou@gmail.com" class="contact-line">
+                        <div class="cl-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <span class="cl-label">Email</span>
+                            <span class="cl-value">rajosvahmanou@gmail.com</span>
+                        </div>
+                    </a>
+                    <a href="tel:+261388338001" class="contact-line">
+                        <div class="cl-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <span class="cl-label">Téléphone & WhatsApp</span>
+                            <span class="cl-value">+261 38 83 380 01</span>
+                        </div>
+                    </a>
+                    <div class="contact-line">
+                        <div class="cl-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <span class="cl-label">Localisation</span>
+                            <span class="cl-value">Antananarivo, Madagascar & Remote</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-socials">
+                    <a href="https://github.com/Manou-ux" class="social-pill"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://linkedin.com/in/manou-rajosvah-ba5448390" class="social-pill"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://facebook.com/manou.rajosvah" class="social-pill"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="#" class="social-pill"><i class="fab fa-dribbble"></i> Dribbble</a>
+                    <a href="#" class="social-pill"><i class="fab fa-codepen"></i> CodePen</a>
+                </div>
+            </div>
+
+            <div class="contact-right reveal">
+                <form id="contact-form" action="https://formspree.io/f/movkzvrz" method="POST">
+                    <div class="field-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom et prénom" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="votre.email@exemple.com" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet, vos besoins et vos attentes..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-w">
+                        Envoyer <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">RM<span>.</span></div>
+            <p class="footer-tagline">Créateur d'expériences digitales — du code au composant.</p>
+            <div class="footer-links">
+                <a href="#home">Accueil</a>
+                <a href="#about">À propos</a>
+                <a href="#projects">Projets</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 rajosvahmanou@gmail.com. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/gallery.js"></script>
+</body>
+</html>
