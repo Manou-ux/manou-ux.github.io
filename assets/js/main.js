@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isExpanded) {
                 // Afficher les projets cachés
                 hiddenProjects.style.display = 'block';
-                toggleBtn.innerHTML = 'Voir moins de projets <i class="fas fa-arrow-up"></i>';
+                toggleBtn.innerHTML = 'Voir moins<i class="fas fa-arrow-up"></i>';
                 toggleBtn.classList.add('active');
                 
                 // Animation pour chaque projet qui apparaît
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Cacher les projets
                 hiddenProjects.style.display = 'none';
-                toggleBtn.innerHTML = 'Voir plus de projets <i class="fas fa-arrow-down"></i>';
+                toggleBtn.innerHTML = 'Voir plus<i class="fas fa-arrow-down"></i>';
                 toggleBtn.classList.remove('active');
 
                 // Retour à la section projets
