@@ -111,12 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ── Skills Tabs ── */
     const tabBtns   = document.querySelectorAll('.tab-btn');
     const panels    = document.querySelectorAll('.skills-panel');
+    const skillsTabs = document.querySelector('.skills-tabs');
+
+    function centerActiveTab(btn) {
+        if (!skillsTabs || !btn) return;
+        const containerRect = skillsTabs.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+        const delta = (btnRect.left + btnRect.width / 2) - (containerRect.left + containerRect.width / 2);
+        skillsTabs.scrollBy({ left: delta, behavior: 'smooth' });
+    }
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.dataset.tab;
             tabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            centerActiveTab(btn);
 
             panels.forEach(panel => {
                 panel.classList.remove('active');
@@ -133,6 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
         panel.querySelectorAll('.sk-fill').forEach(bar => {
             bar.style.width = (bar.dataset.w || 0) + '%';
         });
+    }
+
+    // Keep active tab visible/centered when page loads.
+    const initialActiveTab = document.querySelector('.tab-btn.active');
+    if (initialActiveTab) {
+        centerActiveTab(initialActiveTab);
     }
 
     // Animate bars when skills section enters viewport

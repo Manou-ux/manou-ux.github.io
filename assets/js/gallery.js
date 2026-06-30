@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryModal = document.getElementById('projectGalleryModal');
     const openGalleryButtons = document.querySelectorAll('.js-open-gallery-modal');
     const closeGalleryButtons = document.querySelectorAll('.js-close-gallery-modal');
-    const galleryThumbs = document.querySelectorAll('.js-gallery-thumb');
+    const galleryGrid = document.querySelector('.project-gallery-grid');
     const imagePreviewModal = document.getElementById('projectImagePreviewModal');
     const imagePreviewMain = document.getElementById('projectImagePreviewMain');
     const closeImagePreviewButtons = document.querySelectorAll('.js-close-image-preview');
@@ -15,14 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const imagePreviewNextBtn = document.querySelector('.js-image-preview-next');
     const imagePreviewFullscreenBtn = document.querySelector('.js-image-preview-fullscreen');
     const imagePreviewExitFsBtn = document.querySelector('.js-image-preview-exit-fs');
-    const imagePreviewHint = document.querySelector('.js-image-preview-hint');
 
-    if (galleryModal && openGalleryButtons.length > 0 && galleryThumbs.length > 0) {
+    if (galleryModal && openGalleryButtons.length > 0 && galleryGrid) {
         let activeIndex = 0;
         let isPreviewOpen = false;
         let touchStartX = 0;
         let touchEndX = 0;
-        let hintTimer = null;
+        let currentGalleryItems = [];
 
         const syncBodyScrollLock = () => {
             const isGalleryOpen = galleryModal.classList.contains('open');
@@ -30,24 +29,63 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = isAnyModalOpen ? 'hidden' : '';
         };
 
+        const getGalleryThumbs = () => galleryGrid.querySelectorAll('.js-gallery-thumb');
+
         const setActiveImage = (index) => {
-            const safeIndex = (index + galleryThumbs.length) % galleryThumbs.length;
-            const selectedThumb = galleryThumbs[safeIndex];
+            const thumbs = getGalleryThumbs();
+            if (thumbs.length === 0) return;
+            const safeIndex = (index + thumbs.length) % thumbs.length;
+            const selectedThumb = thumbs[safeIndex];
             if (!selectedThumb) return;
 
             activeIndex = safeIndex;
 
-            galleryThumbs.forEach((thumb, thumbIndex) => {
+            thumbs.forEach((thumb, thumbIndex) => {
                 thumb.classList.toggle('is-active', thumbIndex === safeIndex);
             });
 
-            if (imagePreviewMain && isPreviewOpen) {
-                imagePreviewMain.src = selectedThumb.src;
-                imagePreviewMain.alt = selectedThumb.alt;
+            if (imagePreviewMain && isPreviewOpen && currentGalleryItems[safeIndex]) {
+                imagePreviewMain.src = currentGalleryItems[safeIndex].src;
+                imagePreviewMain.alt = currentGalleryItems[safeIndex].alt;
             }
         };
 
-        const openGalleryModal = () => {
+        const renderGalleryFromButton = (button) => {
+            const rawGallery = button.dataset.gallery || '';
+            const imageSources = rawGallery.split(',').map((item) => item.trim()).filter(Boolean);
+            const fallbackCardImage = button.closest('.proj-item')?.querySelector('.proj-img img');
+            const fallbackSrc = fallbackCardImage?.getAttribute('src');
+            const fallbackAlt = button.dataset.galleryAlt || fallbackCardImage?.getAttribute('alt') || 'Capture ecran';
+            const sources = imageSources.length > 0 ? imageSources : (fallbackSrc ? [fallbackSrc] : []);
+
+            currentGalleryItems = sources.map((src, idx) => ({
+                src,
+                alt: `${button.dataset.galleryAlt || fallbackAlt}${sources.length > 1 ? ` ${idx + 1}` : ''}`.trim()
+            }));
+
+            galleryGrid.innerHTML = currentGalleryItems
+                .map((item, idx) => `<img src="${item.src}" alt="${item.alt}" class="js-gallery-thumb${idx === 0 ? ' is-active' : ''}" tabindex="0">`)
+                .join('');
+
+            const thumbs = getGalleryThumbs();
+            thumbs.forEach((thumb, index) => {
+                thumb.addEventListener('click', () => {
+                    setActiveImage(index);
+                    openImagePreviewModal();
+                });
+                thumb.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setActiveImage(index);
+                        openImagePreviewModal();
+                    }
+                });
+            });
+        };
+
+        const openGalleryModal = (button) => {
+            renderGalleryFromButton(button);
+            activeIndex = 0;
             galleryModal.classList.add('open');
             galleryModal.setAttribute('aria-hidden', 'false');
             syncBodyScrollLock();
@@ -62,10 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const openImagePreviewModal = () => {
             if (!imagePreviewModal || !imagePreviewMain) return;
-            const selectedThumb = galleryThumbs[activeIndex];
-            if (!selectedThumb) return;
-            imagePreviewMain.src = selectedThumb.src;
-            imagePreviewMain.alt = selectedThumb.alt;
+            if (!currentGalleryItems[activeIndex]) return;
+            imagePreviewMain.src = currentGalleryItems[activeIndex].src;
+            imagePreviewMain.alt = currentGalleryItems[activeIndex].alt;
             imagePreviewModal.classList.add('open');
             imagePreviewModal.setAttribute('aria-hidden', 'false');
             isPreviewOpen = true;
@@ -95,26 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         openGalleryButtons.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                openGalleryModal();
+                openGalleryModal(btn);
             });
         });
 
         closeGalleryButtons.forEach((btn) => {
             btn.addEventListener('click', closeGalleryModal);
-        });
-
-        galleryThumbs.forEach((thumb, index) => {
-            thumb.addEventListener('click', () => {
-                setActiveImage(index);
-                openImagePreviewModal();
-            });
-            thumb.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setActiveImage(index);
-                    openImagePreviewModal();
-                }
-            });
         });
 
         closeImagePreviewButtons.forEach((btn) => {
@@ -185,25 +208,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!imagePreviewModal) return;
             const isFsActive = Boolean(document.fullscreenElement);
             imagePreviewModal.querySelector('.project-image-preview-content')?.classList.toggle('is-fullscreen', isFsActive);
-            if (!isFsActive && imagePreviewHint) {
-                imagePreviewHint.classList.remove('is-hidden');
-            }
-        };
-
-        const showMobileFullscreenHint = () => {
-            if (!imagePreviewHint) return;
-            if (!window.matchMedia('(max-width: 768px)').matches) return;
-            imagePreviewHint.classList.remove('is-hidden');
-            if (hintTimer) clearTimeout(hintTimer);
-            hintTimer = setTimeout(() => {
-                imagePreviewHint.classList.add('is-hidden');
-            }, 3200);
         };
 
         if (imagePreviewFullscreenBtn) {
             imagePreviewFullscreenBtn.addEventListener('click', () => {
                 enterFullscreenPreview();
-                showMobileFullscreenHint();
             });
         }
 
