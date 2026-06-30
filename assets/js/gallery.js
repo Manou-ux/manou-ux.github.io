@@ -15,12 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const imagePreviewNextBtn = document.querySelector('.js-image-preview-next');
     const imagePreviewFullscreenBtn = document.querySelector('.js-image-preview-fullscreen');
     const imagePreviewExitFsBtn = document.querySelector('.js-image-preview-exit-fs');
+    const imagePreviewHint = document.querySelector('.js-image-preview-hint');
 
     if (galleryModal && openGalleryButtons.length > 0 && galleryThumbs.length > 0) {
         let activeIndex = 0;
         let isPreviewOpen = false;
         let touchStartX = 0;
         let touchEndX = 0;
+        let hintTimer = null;
 
         const syncBodyScrollLock = () => {
             const isGalleryOpen = galleryModal.classList.contains('open');
@@ -183,11 +185,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!imagePreviewModal) return;
             const isFsActive = Boolean(document.fullscreenElement);
             imagePreviewModal.querySelector('.project-image-preview-content')?.classList.toggle('is-fullscreen', isFsActive);
+            if (!isFsActive && imagePreviewHint) {
+                imagePreviewHint.classList.remove('is-hidden');
+            }
+        };
+
+        const showMobileFullscreenHint = () => {
+            if (!imagePreviewHint) return;
+            if (!window.matchMedia('(max-width: 768px)').matches) return;
+            imagePreviewHint.classList.remove('is-hidden');
+            if (hintTimer) clearTimeout(hintTimer);
+            hintTimer = setTimeout(() => {
+                imagePreviewHint.classList.add('is-hidden');
+            }, 3200);
         };
 
         if (imagePreviewFullscreenBtn) {
             imagePreviewFullscreenBtn.addEventListener('click', () => {
                 enterFullscreenPreview();
+                showMobileFullscreenHint();
             });
         }
 
