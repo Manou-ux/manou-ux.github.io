@@ -586,7 +586,7 @@ body * { cursor: none !important; }
 }
 .proj-item:last-child { border-bottom: 1px solid var(--border); }
 .proj-img {
-    border-radius: var(--radius);
+    border-radius:10px;
     overflow: hidden;
     aspect-ratio: 16/10;
 }
