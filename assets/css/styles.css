@@ -175,8 +175,9 @@ body * { cursor: none !important; }
 .full-w { width: 100%; justify-content: center; }
 
 .hero-right { position: relative; }
-.hero-img-frame { position: relative; border: 1px solid var(--border-2); padding: 10px; background: var(--surface); max-width: 380px; margin: 0 auto; }
-.hero-img-frame img { aspect-ratio: 3/3.6; object-fit: cover; filter: grayscale(15%) contrast(1.05); }
+.hero-img-frame { position: relative; border: 1px solid var(--border-2); background: var(--surface); max-width: 340px; width: 100%; aspect-ratio: 1/1; margin: 0 auto; border-radius: 50%; }
+.hero-img-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; border-radius: 50%; filter: grayscale(15%) contrast(1.05); }
+.hero-img-frame .rm-corners { display: none; }
 .hero-img-frame::before { content: 'REF. MANOU—R2026'; position: absolute; top: -1.3rem; left: 10px; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-dim); }
 .img-badge { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 0.6rem; background: var(--bg2); border: 1px solid var(--border-2); padding: 0.5rem 1rem; border-radius: 100px; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
 .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--trace); box-shadow: 0 0 0 3px var(--trace-soft); animation: pulse 2s infinite; }
@@ -229,6 +230,8 @@ body * { cursor: none !important; }
 
 .projects { background: var(--bg); }
 .projects-list { display: flex; flex-direction: column; gap: 1.5rem; }
+#hiddenProjects { display: none; }
+#hiddenProjects.open { display: flex; }
 .proj-item { display: grid; grid-template-columns: 340px 1fr; gap: 2.5rem; padding: 2rem; border: 1px solid var(--border); border-radius: var(--radius); position: relative; transition: border-color 0.4s, background 0.4s; }
 .proj-item:hover { border-color: var(--border-2); background: var(--surface-2); }
 .proj-item::before { content: 'U' attr(data-num); position: absolute; top: -0.75rem; left: 1.6rem; background: var(--bg); padding: 0 0.6rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--accent); }
@@ -377,3 +380,31 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 0
 
 .project-gallery-content h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 1.4rem; }
 .gallery-hint { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 400; color: var(--text-muted); text-transform: none; letter-spacing: 0.02em; }
+
+/* ═══════════════ ACCESSIBILITÉ ═══════════════ */
+.project-gallery-modal[aria-hidden="true"],
+.project-image-preview-modal[aria-hidden="true"] {
+    pointer-events: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+        transition-delay: 0s !important;
+        scroll-behavior: auto !important;
+    }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
+    .loader-text span { opacity: 1; transform: none; }
+    .loader-fill { width: 100%; }
+    .cursor-dot, .cursor-ring { display: none !important; }
+    body, body * { cursor: auto !important; }
+}

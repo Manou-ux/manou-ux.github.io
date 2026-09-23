@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rajosvah-Portfolio.vercel.app/sitemap.xml
