@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate HTML
-        uses: Cyb3r-Jak3/html5validator-action@v0.6.0
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: .
 
@@ -108,6 +108,31 @@ jobs:
             echo "OK: $file"
           done
 
+          # Références locales statiques (index.html)
+          grep -oE '(src|href)="(assets/[^"]+|favicon\.png|og-image\.png|cv\.(pdf|jpg))"' index.html \
+            | sed -E 's/.*="([^"]+)"/\1/' \
+            | sort -u > /tmp/refs_index.txt
+
+          while read -r ref; do
+            if [ ! -f "$ref" ]; then
+              echo "ERROR: Missing asset -> $ref"
+              exit 1
+            fi
+            echo "OK (référencé): $ref"
+          done < /tmp/refs_index.txt
+
+          # Références des images de la galerie (data.js)
+          grep -ohE 'assets/images/[A-Za-z0-9_+./-]+' assets/js/data.js \
+            | sort -u > /tmp/refs_data.txt
+
+          while read -r ref; do
+            if [ ! -f "$ref" ]; then
+              echo "ERROR: Missing asset -> $ref"
+              exit 1
+            fi
+            echo "OK (galerie): $ref"
+          done < /tmp/refs_data.txt
+
           echo "All required files are present."
 
 
@@ -171,9 +196,22 @@ jobs:
 
     needs: quality-gate
 
+    # Build/déploiement uniquement sur main (les PR ne font que contrôler)
+    if: github.ref == 'refs/heads/main'
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Stage site files
+        shell: bash
+        run: |
+          mkdir -p _site
+          cp -r assets _site/
+          cp index.html cv.pdf cv.jpg favicon.png og-image.png robots.txt sitemap.xml _site/
+          echo "Staged files:"
+          find _site -type f | sort
+          du -sh _site
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
@@ -181,7 +219,7 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
 
   # ==========================================================
