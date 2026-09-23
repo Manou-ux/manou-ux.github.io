@@ -2,7 +2,64 @@
    RAJOSVAH MANOU — main.js
    ═══════════════════════════════════════════ */
 
+function buildProjectCard(p) {
+    const galleryBtn = `<a href="#"
+        class="proj-link-btn js-open-gallery-modal"
+        data-gallery="${p.gallery.join(', ')}"
+        data-gallery-alt="${p.galleryAlt}"
+        aria-haspopup="dialog"><i class="fas fa-external-link-alt"></i> Voir</a>`;
+
+    const links = [galleryBtn];
+    p.links.forEach(l => {
+        if (l.type === 'github') {
+            links.push(`<a href="${l.url}" class="proj-link-btn ghost" target="_blank" rel="noopener"><i class="fab fa-github"></i> ${l.label}</a>`);
+        } else if (l.type === 'private') {
+            links.push(`<a href="javascript:void(0)" class="proj-link-btn ghost btn-private" title="Privé"><i class="fas fa-lock"></i> ${l.label}</a>`);
+        } else if (l.type === 'alert') {
+            links.push(`<a href="#" class="proj-link-btn ghost js-alert-link" data-msg="${l.msg}"><i class="fab fa-github"></i> ${l.label}</a>`);
+        } else if (l.type === 'contact') {
+            links.push(`<a href="#contact" class="proj-link-btn ghost"><i class="fas fa-envelope"></i> ${l.label}</a>`);
+        }
+    });
+
+    return `
+        <article class="proj-item reveal" data-num="${p.num}">
+            <div class="proj-img">
+                <img src="${p.image}" alt="${p.alt}" loading="lazy" decoding="async">
+            </div>
+            <div class="proj-body">
+                <div class="proj-top">
+                    <h3 class="proj-title">${p.title}</h3>
+                    <span class="proj-type">${p.type}</span>
+                </div>
+                <p class="proj-desc">${p.desc}</p>
+                <div class="proj-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+                <div class="proj-links">${links.join('')}</div>
+            </div>
+        </article>`;
+}
+
+function renderProjects() {
+    const list = document.getElementById('projectsList');
+    const hidden = document.getElementById('hiddenProjects');
+    if (!list) return;
+    PROJECTS.forEach(p => {
+        const container = (p.featured && hidden) ? list : (hidden || list);
+        container.insertAdjacentHTML('beforeend', buildProjectCard(p));
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* ── Render projects from data ── */
+    renderProjects();
+    document.addEventListener('click', e => {
+        const alertLink = e.target.closest('.js-alert-link');
+        if (alertLink) {
+            e.preventDefault();
+            alert(alertLink.dataset.msg || 'Le code source est actuellement indisponible.');
+        }
+    });
 
     /* ── Page Loader ── */
     const loader = document.getElementById('pageLoader');
@@ -53,14 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     burger.addEventListener('click', () => {
-        burger.classList.toggle('open');
+        const isOpen = burger.classList.toggle('open');
         navMenu.classList.toggle('open');
+        burger.setAttribute('aria-expanded', String(isOpen));
         document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
     });
 
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             burger.classList.remove('open');
+            burger.setAttribute('aria-expanded', 'false');
             navMenu.classList.remove('open');
             document.body.style.overflow = '';
         });
@@ -70,7 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ── Smooth scroll ── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
+            const href = a.getAttribute('href');
+            if (!href || href === '#') return;
+            const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -80,9 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ── Scroll Reveal ── */
-    const revealEls = document.querySelectorAll('.reveal');
-
     function triggerReveal() {
+        const revealEls = document.querySelectorAll('.reveal');
         const io = new IntersectionObserver((entries) => {
             entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
@@ -171,13 +231,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (dlTrigger) {
         dlTrigger.addEventListener('click', () => {
-            dlTrigger.classList.toggle('open');
+            const isOpen = dlTrigger.classList.toggle('open');
             dlOptions.classList.toggle('open');
+            dlTrigger.setAttribute('aria-expanded', String(isOpen));
         });
         document.addEventListener('click', e => {
             if (!dlTrigger.contains(e.target) && !dlOptions.contains(e.target)) {
                 dlTrigger.classList.remove('open');
                 dlOptions.classList.remove('open');
+                dlTrigger.setAttribute('aria-expanded', 'false');
             }
         });
     }
@@ -246,34 +308,29 @@ document.addEventListener('DOMContentLoaded', () => {
 // Gestion de l'affichage des projets (Voir plus / Voir moins)
 document.addEventListener('DOMContentLoaded', function() {
     const toggleBtn = document.getElementById('toggleProjectsBtn');
-    const hiddenProjects = document.getElementById('hiddenProjects');
-    
-    if (toggleBtn && hiddenProjects) {
+    const hiddenContainer = document.getElementById('hiddenProjects');
+
+    if (toggleBtn && hiddenContainer) {
         let isExpanded = false;
-        
+
         toggleBtn.addEventListener('click', function() {
             isExpanded = !isExpanded;
-            
+
             if (isExpanded) {
-                // Afficher les projets cachés
-                hiddenProjects.style.display = 'block';
+                hiddenContainer.classList.add('open');
                 toggleBtn.innerHTML = 'Voir moins<i class="fas fa-arrow-up"></i>';
-                toggleBtn.classList.add('active');
-                
-                // Animation pour chaque projet qui apparaît
-                const hiddenProjectItems = hiddenProjects.querySelectorAll('.proj-item');
-                hiddenProjectItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                    }, index * 100);
+                toggleBtn.setAttribute('aria-expanded', 'true');
+
+                const items = hiddenContainer.querySelectorAll('.proj-item');
+                items.forEach((item, index) => {
+                    item.style.transitionDelay = `${index * 100}ms`;
+                    item.classList.add('visible');
                 });
             } else {
-                // Cacher les projets
-                hiddenProjects.style.display = 'none';
+                hiddenContainer.classList.remove('open');
                 toggleBtn.innerHTML = 'Voir plus<i class="fas fa-arrow-down"></i>';
-                toggleBtn.classList.remove('active');
+                toggleBtn.setAttribute('aria-expanded', 'false');
 
-                // Retour à la section projets
                 document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
             }
         });

@@ -22,6 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
         let touchStartX = 0;
         let touchEndX = 0;
         let currentGalleryItems = [];
+        let lastFocusedEl = null;
+
+        const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, img[tabindex="0"], [tabindex]:not([tabindex="-1"])';
+
+        const trapFocus = (e, container) => {
+            if (e.key !== 'Tab' || !container) return;
+            const focusables = Array.from(container.querySelectorAll(FOCUSABLE))
+                .filter(el => el.getClientRects().length > 0 || el === document.activeElement);
+            if (focusables.length === 0) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        };
 
         const syncBodyScrollLock = () => {
             const isGalleryOpen = galleryModal.classList.contains('open');
@@ -64,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }));
 
             galleryGrid.innerHTML = currentGalleryItems
-                .map((item, idx) => `<img src="${item.src}" alt="${item.alt}" class="js-gallery-thumb${idx === 0 ? ' is-active' : ''}" tabindex="0">`)
+                .map((item, idx) => `<img src="${item.src}" alt="${item.alt}" class="js-gallery-thumb${idx === 0 ? ' is-active' : ''}" tabindex="0" loading="lazy" decoding="async">`)
                 .join('');
 
             const thumbs = getGalleryThumbs();
@@ -86,16 +106,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const openGalleryModal = (button) => {
             renderGalleryFromButton(button);
             activeIndex = 0;
+            lastFocusedEl = document.activeElement;
             galleryModal.classList.add('open');
             galleryModal.setAttribute('aria-hidden', 'false');
             syncBodyScrollLock();
             setActiveImage(activeIndex);
+            galleryModal.querySelector('.project-gallery-content')?.focus();
         };
 
         const closeGalleryModal = () => {
             galleryModal.classList.remove('open');
             galleryModal.setAttribute('aria-hidden', 'true');
             syncBodyScrollLock();
+            if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+                lastFocusedEl.focus();
+            }
+            lastFocusedEl = null;
         };
 
         const openImagePreviewModal = () => {
@@ -107,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imagePreviewModal.setAttribute('aria-hidden', 'false');
             isPreviewOpen = true;
             syncBodyScrollLock();
+            imagePreviewModal.querySelector('.project-image-preview-content')?.focus();
         };
 
         const closeImagePreviewModal = () => {
@@ -116,6 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
             imagePreviewModal.setAttribute('aria-hidden', 'true');
             isPreviewOpen = false;
             syncBodyScrollLock();
+            const activeThumb = galleryGrid.querySelector('.js-gallery-thumb.is-active');
+            (activeThumb || galleryModal.querySelector('.project-gallery-content'))?.focus();
         };
 
         const handleSwipe = () => {
@@ -234,9 +263,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     closeGalleryModal();
                 }
+            } else if (e.key === 'Tab') {
+                trapFocus(e, isPreviewOpen ? imagePreviewModal : galleryModal);
             } else if (isPreviewOpen && e.key === 'ArrowRight') {
+                e.preventDefault();
                 setActiveImage(activeIndex + 1);
             } else if (isPreviewOpen && e.key === 'ArrowLeft') {
+                e.preventDefault();
                 setActiveImage(activeIndex - 1);
             }
         });

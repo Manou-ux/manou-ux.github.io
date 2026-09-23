@@ -4,12 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rajosvah Manou — Dev</title>
-    <link rel="icon" type="image/png" href="assets/images/icon.png">
+
+    <!-- SEO -->
+    <meta name="description" content="Portfolio de Rajosvah Manou, développeur et technicien informatique à Antananarivo (Madagascar) : projets web, desktop, mobile, compétences et contact.">
+    <meta name="author" content="Rajosvah Manou">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rajosvah-Portfolio.vercel.app/">
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Rajosvah Manou">
+    <meta property="og:title" content="Rajosvah Manou — Développeur & Technicien Informatique">
+    <meta property="og:description" content="Portfolio de Rajosvah Manou : projets web, desktop, mobile, compétences et contact.">
+    <meta property="og:url" content="https://rajosvah-Portfolio.vercel.app/">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="https://rajosvah-Portfolio.vercel.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rajosvah Manou — Développeur & Technicien Informatique">
+    <meta name="twitter:description" content="Portfolio de Rajosvah Manou : projets web, desktop, mobile, compétences et contact.">
+    <meta name="twitter:image" content="https://rajosvah-Portfolio.vercel.app/og-image.png">
+
+    <meta name="theme-color" content="#0A0F1A">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="assets/images/man.webp">
     <link rel="stylesheet" href="assets/css/styles.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rajosvah Manohisoa Hasimandimby",
+      "givenName": "Rajosvah",
+      "familyName": "Manohisoa Hasimandimby",
+      "jobTitle": "Développeur & Technicien Informatique",
+      "email": "mailto:rajosvahmanou@gmail.com",
+      "telephone": "+261388338001",
+      "url": "https://rajosvah-Portfolio.vercel.app",
+      "image": "https://rajosvah-Portfolio.vercel.app/og-image.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Antananarivo",
+        "addressCountry": "MG"
+      },
+      "sameAs": [
+        "https://github.com/Manou-ux",
+        "https://linkedin.com/in/manou-rajosvah-ba5448390",
+        "https://facebook.com/manou.rajosvah"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "EMIT, Université de Fianarantsoa"
+      },
+      "knowsAbout": ["Java", "JavaScript", "TypeScript", "Python", "PHP", "C#", "React", "Vue.js", "Node.js", "Laravel", "Spring Boot", "WordPress", "MySQL", "PostgreSQL", "Git"]
+    }
+    </script>
 </head>
 <body>
 
@@ -28,7 +82,7 @@
     <!-- Navigation -->
     <nav id="mainNav">
         <a href="#home" class="nav-logo">Portfolio<span class="nav-logo-dot">.</span></a>
-        <button class="burger" id="burgerBtn" aria-label="Menu">
+        <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="navMenu">
             <span></span><span></span>
         </button>
         <div class="nav-menu" id="navMenu">
@@ -62,7 +116,7 @@
             <div class="hero-right reveal">
                 <div class="hero-img-frame">
                     <span class="rm-corners"><span class="rm-tl"></span><span class="rm-tr"></span><span class="rm-bl"></span><span class="rm-br"></span></span>
-                    <img src="assets/images/man.png" alt="Rajosvah Manou">
+                    <img src="assets/images/man.webp" alt="Rajosvah Manou" width="900" height="911" fetchpriority="high" decoding="async">
                     <div class="img-badge">
                         <span>Disponible</span>
                         <div class="badge-dot"></div>
@@ -108,7 +162,7 @@
                 <p class="about-body reveal">Chaque projet est une nouvelle aventure où j'explore des solutions innovantes pour répondre aux défis technologiques d'aujourd'hui. Je valorise la précision, qu'il s'agisse d'architecture logicielle, de performance système ou de stabilité matérielle.</p>
                 <p class="about-body reveal">En constante évolution, je m'intéresse particulièrement aux nouvelles technologies émergentes : l'IA, la réalité augmentée et les expériences immersives.</p>
                 <div class="about-dl reveal">
-                    <button class="dl-trigger" id="dlTrigger">
+                    <button class="dl-trigger" id="dlTrigger" aria-expanded="false" aria-haspopup="true" aria-controls="dlOptions">
                         <i class="fas fa-download"></i> Télécharger mon CV
                         <i class="fas fa-chevron-down dl-chevron"></i>
                     </button>
@@ -130,170 +184,162 @@
         </div>
         <h2 class="section-heading reveal">Expertise <em>Technique</em></h2>
 
-        <div class="skills-tabs reveal">
-            <button class="tab-btn active" data-tab="lang">Langages</button>
-            <button class="tab-btn" data-tab="frontend">Frontend & Backend</button>
-            <button class="tab-btn" data-tab="data">Data & Outils</button>
-            <button class="tab-btn" data-tab="network">Réseau & Conception</button>
-            <button class="tab-btn" data-tab="software">Software & Hardware</button>
+        <div class="skills-tabs reveal" role="tablist" aria-label="Catégories de compétences">
+            <button class="tab-btn active" data-tab="lang" role="tab" aria-selected="true" aria-controls="panel-lang">Langages</button>
+            <button class="tab-btn" data-tab="frontend" role="tab" aria-selected="false" aria-controls="panel-frontend">Frontend & Backend</button>
+            <button class="tab-btn" data-tab="data" role="tab" aria-selected="false" aria-controls="panel-data">Data & Outils</button>
+            <button class="tab-btn" data-tab="network" role="tab" aria-selected="false" aria-controls="panel-network">Réseau & Conception</button>
+            <button class="tab-btn" data-tab="software" role="tab" aria-selected="false" aria-controls="panel-software">Software & Hardware</button>
         </div>
 
         <div class="skills-panels">
             <!-- ========== LANGAGES ========== -->
-            <div class="skills-panel active" data-panel="lang">
+            <div class="skills-panel active" id="panel-lang" data-panel="lang" role="tabpanel">
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fab fa-js sk-icon"></i><span>JavaScript / TypeScript</span></div>
+                    <div class="sk-name"><i class="fab fa-js sk-icon" aria-hidden="true"></i><span>JavaScript / TypeScript</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="Java"><span>Java (SE)</span></div>
+                    <div class="sk-name"><img src="assets/icons/java.svg" alt="" width="18" height="18"><span>Java (SE)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://img.icons8.com/color/48/c-sharp-logo.png" alt="C#"><span>C# (.NET)</span></div>
+                    <div class="sk-name"><img src="assets/icons/csharp.svg" alt="" width="18" height="18"><span>C# (.NET)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python"><span>Python</span></div>
+                    <div class="sk-name"><img src="assets/icons/python.svg" alt="" width="18" height="18"><span>Python</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/php/php-icon.svg" alt="PHP"><span>PHP</span></div>
+                    <div class="sk-name"><img src="assets/icons/php.svg" alt="" width="18" height="18"><span>PHP</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fab fa-html5 sk-icon"></i><span>HTML5 / CSS3</span></div>
+                    <div class="sk-name"><i class="fab fa-html5 sk-icon" aria-hidden="true"></i><span>HTML5 / CSS3</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="95"></div></div><span class="sk-pct">95%</span>
                 </div>
             </div>
 
             <!-- ========== FRONTEND & BACKEND ========== -->
-            <div class="skills-panel" data-panel="frontend">
+            <div class="skills-panel" id="panel-frontend" data-panel="frontend" role="tabpanel">
                 <!-- Frontend -->
                 <div class="skill-section-title">Frontend</div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="React"><span>React.js</span></div>
+                    <div class="sk-name"><img src="assets/icons/react.svg" alt="" width="18" height="18"><span>React.js</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/vuejs/vuejs-icon.svg" alt="Vue.js"><span>Vue.js</span></div>
+                    <div class="sk-name"><img src="assets/icons/vue.svg" alt="" width="18" height="18"><span>Vue.js</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="70"></div></div><span class="sk-pct">70%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fab fa-css3-alt sk-icon"></i><span>Tailwind CSS</span></div>
+                    <div class="sk-name"><i class="fab fa-css3-alt sk-icon" aria-hidden="true"></i><span>Tailwind CSS</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-paint-brush sk-icon"></i><span>Design UI/UX</span></div>
+                    <div class="sk-name"><i class="fas fa-paint-brush sk-icon" aria-hidden="true"></i><span>Design UI/UX</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
                 </div>
 
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma">
-                        <span>Figma</span>
-                    </div>
-                    <div class="sk-bar">
-                        <div class="sk-fill" data-w="90"></div>
-                    </div>
-                    <span class="sk-pct">90%</span>
+                    <div class="sk-name"><img src="assets/icons/figma.svg" alt="" width="18" height="18"><span>Figma</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="90"></div></div><span class="sk-pct">90%</span>
                 </div>
 
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/wordpress/wordpress-icon.svg" alt="WordPress"><span>WordPress</span></div>
+                    <div class="sk-name"><img src="assets/icons/wordpress.svg" alt="" width="18" height="18"><span>WordPress</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="100"></div></div><span class="sk-pct">100%</span>
                 </div>
-
-                <!-- Petit espace simple entre Frontend et Backend -->
-                <div style="margin: 1px 0;"></div>
 
                 <!-- Backend -->
                 <div class="skill-section-title">Backend</div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="Spring Boot"><span>Spring Boot</span></div>
+                    <div class="sk-name"><img src="assets/icons/spring.svg" alt="" width="18" height="18"><span>Spring Boot</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/dotnet/dotnet-icon.svg" alt="ASP.NET"><span>ASP.NET Core</span></div>
+                    <div class="sk-name"><img src="assets/icons/dotnet.svg" alt="" width="18" height="18"><span>ASP.NET Core</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="70"></div></div><span class="sk-pct">70%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" alt="Node.js"><span>Node.js / Express</span></div>
+                    <div class="sk-name"><img src="assets/icons/nodejs.svg" alt="" width="18" height="18"><span>Node.js / Express</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/laravel/laravel-icon.svg" alt="Laravel"><span>Laravel</span></div>
+                    <div class="sk-name"><img src="assets/icons/laravel.svg" alt="" width="18" height="18"><span>Laravel</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://cdn.worldvectorlogo.com/logos/flask.svg" alt="Flask"><span>Flask</span></div>
+                    <div class="sk-name"><img src="assets/icons/flask.svg" alt="" width="18" height="18"><span>Flask</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="60"></div></div><span class="sk-pct">60%</span>
                 </div>
             </div>
 
             <!-- ========== DATA & OUTILS ========== -->
-            <div class="skills-panel" data-panel="data">
+            <div class="skills-panel" id="panel-data" data-panel="data" role="tabpanel">
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg" alt="MySQL"><span>MySQL</span></div>
-                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">90 %</span>
+                    <div class="sk-name"><img src="assets/icons/mysql.svg" alt="" width="18" height="18"><span>MySQL</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="90"></div></div><span class="sk-pct">90%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
-                    <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">85%</span>
-                </div>
-                <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/#" alt="SQL Server"><span>SQL Server</span></div>
-                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">70%</span>
-                </div>
-                <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git"><span>Git / GitHub / GitLab</span></div>
+                    <div class="sk-name"><img src="assets/icons/postgresql.svg" alt="" width="18" height="18"><span>PostgreSQL</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman"><span>Postman / API Testing</span></div>
+                    <div class="sk-name"><img src="assets/icons/sqlserver.svg" alt="" width="18" height="18"><span>SQL Server</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="70"></div></div><span class="sk-pct">70%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="assets/icons/git.svg" alt="" width="18" height="18"><span>Git / GitHub / GitLab</span></div>
+                    <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
+                </div>
+                <div class="skill-row reveal">
+                    <div class="sk-name"><img src="assets/icons/postman.svg" alt="" width="18" height="18"><span>Postman / API Testing</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
             </div>
 
             <!-- ========== RÉSEAU & CONCEPTION ========== -->
-            <div class="skills-panel" data-panel="network">
+            <div class="skills-panel" id="panel-network" data-panel="network" role="tabpanel">
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-network-wired sk-icon"></i><span>Programmation réseau (TCP/UDP/IP, HTTP)</span></div>
+                    <div class="sk-name"><i class="fas fa-network-wired sk-icon" aria-hidden="true"></i><span>Programmation réseau (TCP/UDP/IP, HTTP)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-shield-alt sk-icon"></i><span>Administration réseau / Sécurité</span></div>
+                    <div class="sk-name"><i class="fas fa-shield-alt sk-icon" aria-hidden="true"></i><span>Administration réseau / Sécurité</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="65"></div></div><span class="sk-pct">65%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-project-diagram sk-icon"></i><span>UML (Modélisation)</span></div>
+                    <div class="sk-name"><i class="fas fa-project-diagram sk-icon" aria-hidden="true"></i><span>UML (Modélisation)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-database sk-icon"></i><span>MERISE II (MCD / MLD / MPD)</span></div>
+                    <div class="sk-name"><i class="fas fa-database sk-icon" aria-hidden="true"></i><span>MERISE II (MCD / MLD / MPD)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
             </div>
 
             <!-- ========== SOFTWARE & HARDWARE ========== -->
-            <div class="skills-panel" data-panel="software">
+            <div class="skills-panel" id="panel-software" data-panel="software" role="tabpanel">
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-desktop sk-icon"></i><span>Java SE (Desktop / Swing / JavaFX)</span></div>
+                    <div class="sk-name"><i class="fas fa-desktop sk-icon" aria-hidden="true"></i><span>Java SE (Desktop / Swing / JavaFX)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div><span class="sk-pct">80%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-desktop sk-icon"></i><span>C# (Desktop / WinForms / WPF)</span></div>
+                    <div class="sk-name"><i class="fas fa-desktop sk-icon" aria-hidden="true"></i><span>C# (Desktop / WinForms / WPF)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div><span class="sk-pct">75%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-mobile-alt sk-icon"></i><span>Flutter (Mobile - iOS/Android)</span></div>
+                    <div class="sk-name"><i class="fas fa-mobile-alt sk-icon" aria-hidden="true"></i><span>Flutter (Mobile - iOS/Android)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="65"></div></div><span class="sk-pct">65%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-code sk-icon"></i><span>Architecture logicielle</span></div>
+                    <div class="sk-name"><i class="fas fa-code sk-icon" aria-hidden="true"></i><span>Architecture logicielle</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div><span class="sk-pct">85%</span>
                 </div>
                 <div class="skill-row reveal">
-                    <div class="sk-name"><i class="fas fa-microchip sk-icon"></i><span>Hardware (matériel informatique)</span></div>
+                    <div class="sk-name"><i class="fas fa-microchip sk-icon" aria-hidden="true"></i><span>Hardware (matériel informatique)</span></div>
                     <div class="sk-bar"><div class="sk-fill" data-w="100"></div></div><span class="sk-pct">100%</span>
                 </div>
             </div>
@@ -309,181 +355,13 @@
         <h2 class="section-heading reveal">Mes <em>Projets</em></h2>
         <p class="section-sub reveal">Mes projets témoignent de ma maîtrise de technologies variées et de ma capacité à m'adapter à différents environnements.</p>
 
-        <div class="projects-list">
-
-
-            <!-- DIABETESTRACK -->
-            <article class="proj-item reveal" data-num="01">
-                <div class="proj-img">
-                    <img src="assets/images/app_icon.png" alt="DIABETESTRACKS">
-                </div>
-                <div class="proj-body">
-                    <div class="proj-top">
-                        <h3 class="proj-title">DiabetesTrack</h3>
-                        <span class="proj-type">App Mobile</span>
-                    </div>
-                    <p class="proj-desc">Suivi du Diabete: glycemie, medicament et alimentation</p>
-                    <div class="proj-tags">
-                        <span>Flutter</span><span>Dart</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="#" class="proj-link-btn js-open-gallery-modal" data-gallery="assets/images/diabetesTrack/img1.jpg, assets/images/diabetesTrack/img2.jpg, assets/images/diabetesTrack/img3.jpg, assets/images/diabetesTrack/img4.jpg, assets/images/diabetesTrack/img5.jpg, assets/images/diabetesTrack/img5-1.jpg, assets/images/diabetesTrack/img6.jpg, assets/images/diabetesTrack/img7.jpg, assets/images/diabetesTrack/img8.jpg, assets/images/diabetesTrack/img9.jpg" data-gallery-alt="Capture ecran MINAE">
-                            <i class="fas fa-external-link-alt"></i> Voir
-                        </a>
-                        
-                        <a href="https://github.com/Manou-ux/DiabetesTrack.git" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
-
-                    </div>
-                </div>
-            </article>
-
-            <!-- MINAE -->
-            <article class="proj-item reveal" data-num="01">
-                <div class="proj-img">
-                    <img src="assets/images/MINAE.png" alt="MINAE">
-                </div>
-                <div class="proj-body">
-                    <div class="proj-top">
-                        <h3 class="proj-title">Suivi des Dossiers du Ministère</h3>
-                        <span class="proj-type">App Web</span>
-                    </div>
-                    <p class="proj-desc">Application web développée pour le Ministère de l'Agriculture et de l'Élevage (MINAE) — Anosy, Antananarivo. Centralise le suivi des dossiers, déployée sur serveur IIS.</p>
-                    <div class="proj-tags">
-                        <span>Laravel</span><span>Tailwind CSS</span><span>Blade</span><span>JavaScript</span><span>PostgreSQL</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="#" class="proj-link-btn js-open-gallery-modal" data-gallery="assets/images/minae/Admin.png, assets/images/minae/ajout-user.png, assets/images/minae/crud-user.png, assets/images/minae/dash-admin.png, assets/images/minae/dash-sat.png, assets/images/minae/dash-sgcc.png, assets/images/minae/insert-donnee-sat.png, assets/images/minae/lecture-sgcc.png, assets/images/minae/login-admin.png, assets/images/minae/minae-dashboard-2.jpg, assets/images/minae/minae-dashboard.jpg, assets/images/minae/minae-login.jpg, assets/images/minae/minae-recherche.jpg, assets/images/minae/send.png" data-gallery-alt="Capture ecran MINAE">
-                            <i class="fas fa-external-link-alt"></i> Voir
-                        </a>
-                        
-                        <a href="javascript:void(0)" 
-                        class="proj-link-btn ghost btn-private" 
-                        title="Privé">
-                            <i class="fas fa-lock"></i> Code Source
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- FlowlessTech -->
-            <article class="proj-item reveal" data-num="02">
-                <div class="proj-img">
-                    <img src="assets/images/flowlesstech.png" alt="FlowlessTech">
-                </div>
-                <div class="proj-body">
-                    <div class="proj-top">
-                        <h3 class="proj-title">FlowlessTech</h3>
-                        <span class="proj-type">E-commerce</span>
-                    </div>
-                    <p class="proj-desc">Site e-commerce moderne dédié à la vente de PC gamer et matériel informatique. Gestion complète des produits, panier, commandes et paiements. Design responsive et optimisé.</p>
-                    <div class="proj-tags">
-                        <span>WordPress</span><span>WooCommerce</span><span>JavaScript</span><span>MySQL</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="#" class="proj-link-btn js-open-gallery-modal" data-gallery="assets/images/flowlesstech/flw-dash.png, assets/images/flowlesstech/flw-dash-prod.png, assets/images/flowlesstech/boutique1.png, assets/images/flowlesstech/produit1.png, assets/images/flowlesstech/produit2.png, assets/images/flowlesstech/panier1.png, assets/images/flowlesstech/panier+promo.png, assets/images/flowlesstech/paiment.png, assets/images/flowlesstech/flw-footer.png" data-gallery-alt="Capture ecran FlowlessTech"><i class="fas fa-external-link-alt"></i> Voir</a>
-                    <a href="#" class="proj-link-btn ghost"
-                    onclick="alert('Le code source est actuellement indisponible.'); return false;">
-                        <i class="fab fa-github"></i> Code Source
-                    </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- SONATRA+ C# -->
-            <article class="proj-item reveal" data-num="05">
-                <div class="proj-img">
-                    <img src="assets/images/sonatraCsharp.png" alt="SONATRA+ C#">
-                </div>
-                <div class="proj-body">
-                    <div class="proj-top">
-                        <h3 class="proj-title">SONATRA+ (C#)</h3>
-                        <span class="proj-type">Desktop C#</span>
-                    </div>
-                    <p class="proj-desc">Version desktop du projet SONATRA+ développée en C# avec interface Windows Forms et base de données SQL Server.</p>
-                    <div class="proj-tags">
-                        <span>C#</span><span>SQL Server</span><span>Visual Studio</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="#" class="proj-link-btn js-open-gallery-modal" data-gallery="assets/images/sonatraCsharp/chargement.png, assets/images/sonatraCsharp/chauffeur.png, assets/images/sonatraCsharp/connexion.png, assets/images/sonatraCsharp/dash.png, assets/images/sonatraCsharp/reservation.png, assets/images/sonatraCsharp/stats.png, assets/images/sonatraCsharp/trajet.png, assets/images/sonatraCsharp/voiture.png" data-gallery-alt="Capture ecran SONATRA+ C#"><i class="fas fa-external-link-alt"></i> Voir</a>
-                        <a href="https://github.com/Manou-ux/SONATRA_PLUS-Windows-Form-CSharp.git" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
-                    </div>
-                </div>
-            </article>
-
-
-
-<div id="hiddenProjects" style="display: none;">
-   
-            <!-- Hospital Java -->
-            <article class="proj-item reveal" data-num="04">
-                <div class="proj-img">
-                    <img src="assets/images/hospitalJAVA.png" alt="Hospitalier Java">
-                </div>
-                <div class="proj-body">
-                    <div class="proj-top">
-                        <h3 class="proj-title">Gestion Hospitalière</h3>
-                        <span class="proj-type">Desktop Java</span>
-                    </div>
-                    <p class="proj-desc">Application desktop de gestion hospitalière — patients, données médicales, prescriptions et fiches médicales. Développée en Java avec NetBeans.</p>
-                    <div class="proj-tags">
-                        <span>Java SE</span><span>MySQL</span><span>NetBeans/ Deskto app</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="#" class="proj-link-btn js-open-gallery-modal" data-gallery="assets/images/hospitalJAVA/add.png, assets/images/hospitalJAVA/diag.png, assets/images/hospitalJAVA/facts.png, assets/images/hospitalJAVA/fiche1.png, assets/images/hospitalJAVA/fiche2.png, assets/images/hospitalJAVA/liste.png, assets/images/hospitalJAVA/login.png, assets/images/hospitalJAVA/maj.png, assets/images/hospitalJAVA/menu.png, assets/images/hospitalJAVA/stat-sang.png, assets/images/hospitalJAVA/stat-sex.png" data-gallery-alt="Capture ecran Gestion Hospitaliere"><i class="fas fa-external-link-alt"></i> Voir</a>
-                        <a href="https://github.com/Manou-ux/Hospital-Management-System.git" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
-
-                    </div>
-                </div>
-            </article>
-
-            <!-- SONATRA+ Web -->
-            <article class="proj-item reveal" data-num="03">
-                <div class="proj-img">
-                    <img src="assets/images/sonatraJS.png" alt="SONATRA+">
-                </div>
-                <div class="proj-body">
-                    <div class="proj-top">
-                        <h3 class="proj-title">SONATRA+</h3>
-                        <span class="proj-type">App Web</span>
-                    </div>
-                    <p class="proj-desc">Application de gestion complète pour coopérative de taxi-brousse. Gestion des trajets, chauffeurs, véhicules, réservations et facturation.</p>
-                    <div class="proj-tags">
-                        <span>Node.js</span><span>Express.js</span><span>MySQL</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="#" class="proj-link-btn js-open-gallery-modal" data-gallery="assets/images/sonatraJS/admin-dash.png, assets/images/sonatraJS/client-inscription.png, assets/images/sonatraJS/client-login.png, assets/images/sonatraJS/client1.png, assets/images/sonatraJS/facture.png, assets/images/sonatraJS/infos.png, assets/images/sonatraJS/liste-trajet.png, assets/images/sonatraJS/meteo.png, assets/images/sonatraJS/reservation.png, assets/images/sonatraJS/stat1.png, assets/images/sonatraJS/stat2.png, assets/images/sonatraJS/stat3.png" data-gallery-alt="Capture ecran SONATRA+"><i class="fas fa-external-link-alt"></i> Voir</a>
-                        <a href="https://github.com/Manou-ux/sonatra-node-js-.git" class="proj-link-btn ghost"><i class="fab fa-github"></i> Code Source</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Hardware -->
-            <article class="proj-item reveal" data-num="06">
-                <div class="proj-img">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1170&q=80" alt="Hardware">
-                </div>
-                <div class="proj-body">
-                    <div class="proj-top">
-                        <h3 class="proj-title">Excellente maîtrise du hardware</h3>
-                        <span class="proj-type">Matériel</span>
-                    </div>
-                    <p class="proj-desc">Connaissances élevées en matériels informatiques. Assemblage complet d'UC, diagnostic matériel, maintenance préventive et corrective, conseils d'achat et d'optimisation de systèmes informatiques.</p>
-                    <div class="proj-tags">
-                        <span>Assemblage</span><span>Diagnostic</span><span>Maintenance</span><span>Optimisation</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="#" class="proj-link-btn js-open-gallery-modal" data-gallery="assets/images/autres/pc1.jpg, assets/images/autres/pc2.png, assets/images/autres/pc4.jpeg, assets/images/autres/pc5.jpeg, assets/images/autres/pc6.jpeg" data-gallery-alt="Capture ecran Hardware"><i class="fas fa-external-link-alt"></i> Voir</a>
-                        <a href="#contact" class="proj-link-btn ghost"><i class="fas fa-envelope"></i> Me contacter</a>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-</div>
+        <!-- Rendu dynamique (assets/js/data.js + main.js) -->
+        <div id="projectsList" class="projects-list"></div>
+        <div id="hiddenProjects" class="projects-list"></div>
 
 <!-- Bouton Voir plus -->
 <div class="projects-more-btn-container reveal">
-    <button id="toggleProjectsBtn" class="btn-primary btn-more-projects">
+    <button id="toggleProjectsBtn" class="btn-primary btn-more-projects" aria-expanded="false" aria-controls="hiddenProjects">
         Voir plus <i class="fas fa-arrow-down"></i>
     </button>
 </div>
@@ -525,7 +403,7 @@
                     <div class="tl-dot"></div>
                     <div class="tl-content">
                         <span class="tl-date">2024 – 2025</span>
-                        <h4>Développeur Full Stack</h4> (Freelance)
+                        <h4>Développeur Full Stack (Freelance)</h4>
                         <p>Développement de solutions web complètes, de la conception à la mise en production. Intégration d'APIs, optimisation SEO, backend Node.js et Python.</p>
                     </div>
                 </div>
@@ -621,9 +499,9 @@
                 </div>
 
                 <div class="contact-socials">
-                    <a href="https://github.com/Manou-ux" class="social-pill"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://linkedin.com/in/manou-rajosvah-ba5448390" class="social-pill"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                    <a href="https://facebook.com/manou.rajosvah" class="social-pill"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://github.com/Manou-ux" class="social-pill" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://linkedin.com/in/manou-rajosvah-ba5448390" class="social-pill" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://facebook.com/manou.rajosvah" class="social-pill" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
                 </div>
             </div>
 
@@ -666,24 +544,24 @@
 
     <div id="projectGalleryModal" class="project-gallery-modal" aria-hidden="true">
         <div class="project-gallery-backdrop js-close-gallery-modal"></div>
-        <div class="project-gallery-content" role="dialog" aria-modal="true" aria-label="Captures d'ecran de l'application">
+        <div class="project-gallery-content" role="dialog" aria-modal="true" aria-label="Captures d'ecran de l'application" tabindex="-1">
             <button class="project-gallery-close js-close-gallery-modal" aria-label="Fermer la galerie">
                 <i class="fas fa-times"></i>
             </button>
             <h3>Captures d'ecran <span class="gallery-hint">— cliquez pour voir</span></h3>
             <div class="project-gallery-grid">
-                <img src="assets/images/MINAE.png" alt="Capture ecran MINAE" class="js-gallery-thumb is-active" tabindex="0">
-                <img src="assets/images/flowlesstech.png" alt="Capture ecran FlowlessTech" class="js-gallery-thumb" tabindex="0">
-                <img src="assets/images/sonatraJS.png" alt="Capture ecran SONATRA+" class="js-gallery-thumb" tabindex="0">
-                <img src="assets/images/hospitalJAVA.png" alt="Capture ecran Gestion Hospitaliere" class="js-gallery-thumb" tabindex="0">
-                <img src="assets/images/sonatraCsharp.png" alt="Capture ecran SONATRA+ C#" class="js-gallery-thumb" tabindex="0">
+                <img src="assets/images/MINAE.webp" alt="Capture ecran MINAE" class="js-gallery-thumb is-active" tabindex="0" loading="lazy" decoding="async">
+                <img src="assets/images/flowlesstech.webp" alt="Capture ecran FlowlessTech" class="js-gallery-thumb" tabindex="0" loading="lazy" decoding="async">
+                <img src="assets/images/sonatraJS.webp" alt="Capture ecran SONATRA+" class="js-gallery-thumb" tabindex="0" loading="lazy" decoding="async">
+                <img src="assets/images/hospitalJAVA.webp" alt="Capture ecran Gestion Hospitaliere" class="js-gallery-thumb" tabindex="0" loading="lazy" decoding="async">
+                <img src="assets/images/sonatraCsharp.webp" alt="Capture ecran SONATRA+ C#" class="js-gallery-thumb" tabindex="0" loading="lazy" decoding="async">
             </div>
         </div>
     </div>
 
     <div id="projectImagePreviewModal" class="project-image-preview-modal" aria-hidden="true">
         <div class="project-image-preview-backdrop js-close-image-preview"></div>
-        <div class="project-image-preview-content" role="dialog" aria-modal="true" aria-label="Apercu image en grand">
+        <div class="project-image-preview-content" role="dialog" aria-modal="true" aria-label="Apercu image en grand" tabindex="-1">
             <button class="project-image-preview-fullscreen js-image-preview-fullscreen" aria-label="Activer le plein ecran">
                 <i class="fas fa-expand"></i>
             </button>
@@ -696,13 +574,14 @@
             <button class="project-image-preview-nav prev js-image-preview-prev" aria-label="Image precedente">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <img id="projectImagePreviewMain" src="assets/images/MINAE.png" alt="Capture ecran en tres grand">
+            <img id="projectImagePreviewMain" src="assets/images/MINAE.webp" alt="Capture ecran en tres grand">
             <button class="project-image-preview-nav next js-image-preview-next" aria-label="Image suivante">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
     </div>
 
+    <script src="assets/js/data.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/gallery.js"></script>
 </body>
