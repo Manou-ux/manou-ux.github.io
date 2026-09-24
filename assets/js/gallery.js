@@ -1,13 +1,16 @@
 /* ═══════════════════════════════════════════
-   RAJOSVAH MANOU — gallery.js
+   RAJOSVAH MANOU — gallery.js (editorial light)
    ═══════════════════════════════════════════ */
 
+'use strict';
+
 document.addEventListener('DOMContentLoaded', () => {
+
     /* ── Project screenshots modal ── */
     const galleryModal = document.getElementById('projectGalleryModal');
     const openGalleryButtons = document.querySelectorAll('.js-open-gallery-modal');
     const closeGalleryButtons = document.querySelectorAll('.js-close-gallery-modal');
-    const galleryGrid = document.querySelector('.project-gallery-grid');
+    const galleryGrid = galleryModal ? galleryModal.querySelector('.project-gallery-grid') : null;
     const imagePreviewModal = document.getElementById('projectImagePreviewModal');
     const imagePreviewMain = document.getElementById('projectImagePreviewMain');
     const closeImagePreviewButtons = document.querySelectorAll('.js-close-image-preview');
@@ -44,9 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const syncBodyScrollLock = () => {
-            const isGalleryOpen = galleryModal.classList.contains('open');
-            const isAnyModalOpen = isGalleryOpen || isPreviewOpen;
-            document.body.style.overflow = isAnyModalOpen ? 'hidden' : '';
+            const anyOpen = galleryModal.classList.contains('open') || isPreviewOpen;
+            document.body.style.overflow = anyOpen ? 'hidden' : '';
         };
 
         const getGalleryThumbs = () => galleryGrid.querySelectorAll('.js-gallery-thumb');
@@ -72,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const renderGalleryFromButton = (button) => {
             const rawGallery = button.dataset.gallery || '';
-            const imageSources = rawGallery.split(',').map((item) => item.trim()).filter(Boolean);
-            const fallbackCardImage = button.closest('.proj-item')?.querySelector('.proj-img img');
+            const imageSources = rawGallery.split(',').map(item => item.trim()).filter(Boolean);
+            const fallbackCardImage = button.closest('.proj-card')?.querySelector('.proj-media img');
             const fallbackSrc = fallbackCardImage?.getAttribute('src');
-            const fallbackAlt = button.dataset.galleryAlt || fallbackCardImage?.getAttribute('alt') || 'Capture ecran';
+            const fallbackAlt = button.dataset.galleryAlt || fallbackCardImage?.getAttribute('alt') || 'Capture d\'écran';
             const sources = imageSources.length > 0 ? imageSources : (fallbackSrc ? [fallbackSrc] : []);
 
             currentGalleryItems = sources.map((src, idx) => ({
@@ -205,7 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!imagePreviewMain) return;
             const previewHost = imagePreviewMain;
             if (previewHost.requestFullscreen) {
-                await previewHost.requestFullscreen();
+                try {
+                    await previewHost.requestFullscreen();
+                } catch (error) {
+                    // Fullscreen may be rejected; keep interactive.
+                }
             } else {
                 imagePreviewModal.querySelector('.project-image-preview-content')?.classList.add('is-fullscreen');
             }
@@ -220,7 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         async function exitFullscreenPreview() {
             if (document.fullscreenElement && document.exitFullscreen) {
-                await document.exitFullscreen();
+                try {
+                    await document.exitFullscreen();
+                } catch (error) {
+                    // Ignore exit errors.
+                }
             } else {
                 imagePreviewModal.querySelector('.project-image-preview-content')?.classList.remove('is-fullscreen');
             }
@@ -275,102 +285,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ── Project Items: tilt effect on hover ── */
-    const projItems = document.querySelectorAll('.proj-item');
-
-    projItems.forEach(item => {
-        const img = item.querySelector('.proj-img');
-        if (!img) return;
-
-        item.addEventListener('mousemove', (e) => {
-            const rect = item.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width  - 0.5;
-            const y = (e.clientY - rect.top)  / rect.height - 0.5;
-
-            img.style.transform = `
-                perspective(800px)
-                rotateY(${x * 6}deg)
-                rotateX(${-y * 4}deg)
-                scale(1.02)
-            `;
-        });
-
-        item.addEventListener('mouseleave', () => {
-            img.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)';
-        });
-    });
-
-
     /* ── Lazy Load Images with fade-in ── */
-    const images = document.querySelectorAll('img[src]');
+    if ('IntersectionObserver' in window) {
+        const images = document.querySelectorAll('img[loading="lazy"]');
 
-    const imgObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.6s ease';
-                img.addEventListener('load', () => {
-                    img.style.opacity = '1';
+        if (images.length) {
+            const imgObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const img = entry.target;
+                    img.style.transition = 'opacity 0.6s ease';
+                    img.style.opacity = '0';
+                    img.addEventListener('load', () => {
+                        img.style.opacity = '1';
+                    });
+                    if (img.complete) img.style.opacity = '1';
+                    imgObserver.unobserve(img);
                 });
-                if (img.complete) img.style.opacity = '1';
-                imgObserver.unobserve(img);
-            }
-        });
-    }, { rootMargin: '200px' });
+            }, { rootMargin: '200px' });
 
-    images.forEach(img => imgObserver.observe(img));
+            images.forEach(img => imgObserver.observe(img));
+        }
+    }
 
-
-    /* ── Horizontal number ticker on stats ── */
-    const stats = document.querySelectorAll('.stat-num');
-
-    const countObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
+    /* ── Count-up animation on hero stats ── */
+    if ('IntersectionObserver' in window) {
+        const stats = document.querySelectorAll('.stat-num');
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
                 const el = entry.target;
                 const rawText = el.textContent.trim();
                 const match = rawText.match(/^(\d+)/);
-                if (!match) return;
+                const target = match ? parseInt(match[1], 10) : 0;
+                if (!match || target < 2) return;
 
-                const target = parseInt(match[1]);
-                const suffix = rawText.replace(match[1], '');
+                const suffix = rawText.replace(match[1], '').slice(1) === '' ? '' : rawText.slice(match[1].length);
+                const zeroPadded = match[1].startsWith('0');
+
                 let start = 0;
-                const duration = 1200;
+                const duration = 1100;
                 const startTime = performance.now();
 
                 function tick(now) {
-                    const elapsed = now - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
+                    const progress = Math.min((now - startTime) / duration, 1);
                     const eased = 1 - Math.pow(1 - progress, 3);
-                    const current = Math.round(eased * target);
-                    el.textContent = current + suffix;
+                    const value = Math.round(eased * target);
+                    el.textContent = (zeroPadded ? String(value).padStart(2, '0') : value) + suffix;
                     if (progress < 1) requestAnimationFrame(tick);
                 }
 
                 requestAnimationFrame(tick);
                 countObserver.unobserve(el);
-            }
-        });
-    }, { threshold: 0.5 });
+            });
+        }, { threshold: 0.5 });
 
-    stats.forEach(stat => countObserver.observe(stat));
-
-
-    /* ── Project Image Parallax on scroll ── */
-    function applyParallax() {
-        const scrolled = window.scrollY;
-        document.querySelectorAll('.proj-img img').forEach(img => {
-            const rect = img.closest('.proj-item').getBoundingClientRect();
-            const center = rect.top + rect.height / 2 - window.innerHeight / 2;
-            const shift = center * 0.05;
-            img.style.transform = `translateY(${shift}px) scale(1.08)`;
-        });
-    }
-
-    // Only on desktop
-    if (window.innerWidth > 768) {
-        window.addEventListener('scroll', applyParallax, { passive: true });
+        stats.forEach(stat => countObserver.observe(stat));
     }
 
 });
