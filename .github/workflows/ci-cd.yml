@@ -31,7 +31,6 @@ jobs:
   html-validation:
     name: 🔍 HTML Validation
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
       - name: Checkout
@@ -41,6 +40,21 @@ jobs:
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: .
+
+      - name: Summarize warnings
+        if: always()
+        shell: bash
+        run: |
+          logfile=$(ls log*.log 2>/dev/null | head -n1)
+          if [ -n "$logfile" ] && grep -q "WARNING" "$logfile"; then
+            {
+              echo "## ⚠️ HTML Validation warnings"
+              echo ""
+              grep "WARNING" "$logfile" | head -n 50
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No HTML warnings."
+          fi
 
 
   # ==========================================================
@@ -171,20 +185,38 @@ jobs:
       - asset-check
       - css-check
 
+    # Ne saute jamais : doit refléter l'état réel des contrôles
+    if: always()
+
     steps:
-      - name: Quality Gate Passed
+      - name: Quality Gate
+        shell: bash
         run: |
+          failed=""
+
+          status=${{ needs.html-validation.result }}
+          if [ "$status" != "success" ]; then failed="$failed html-validation:$status"; fi
+
+          status=${{ needs.javascript-check.result }}
+          if [ "$status" != "success" ]; then failed="$failed javascript-check:$status"; fi
+
+          status=${{ needs.asset-check.result }}
+          if [ "$status" != "success" ]; then failed="$failed asset-check:$status"; fi
+
+          status=${{ needs.css-check.result }}
+          if [ "$status" != "success" ]; then failed="$failed css-check:$status"; fi
+
           echo "======================================"
-          echo "        QUALITY GATE PASSED"
+          if [ -n "$failed" ]; then
+            echo "        ❌ QUALITY GATE FAILED"
+            echo "======================================"
+            echo "Failed gates:$failed"
+            echo ""
+            exit 1
+          fi
+          echo "        ✅ QUALITY GATE PASSED"
           echo "======================================"
-          echo ""
-          echo "HTML validation     : PASSED"
-          echo "JavaScript check    : PASSED"
-          echo "Assets check        : PASSED"
-          echo "CSS check           : PASSED"
-          echo ""
           echo "The portfolio is ready for deployment."
-          echo "======================================"
 
 
   # ==========================================================
@@ -196,8 +228,8 @@ jobs:
 
     needs: quality-gate
 
-    # Build/déploiement uniquement sur main (les PR ne font que contrôler)
-    if: github.ref == 'refs/heads/main'
+    # Build toujours (même si un contrôle échoue) mais seulement sur main
+    if: ${{ always() && github.ref == 'refs/heads/main' }}
 
     steps:
       - name: Checkout
@@ -231,8 +263,8 @@ jobs:
 
     needs: build
 
-    # Seulement lorsque le workflow tourne sur main
-    if: github.ref == 'refs/heads/main'
+    # Déploie toujours (même si un contrôle échoue) mais seulement sur main
+    if: ${{ always() && github.ref == 'refs/heads/main' }}
 
     environment:
       name: github-pages
