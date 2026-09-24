@@ -4,37 +4,43 @@
 
 'use strict';
 
+const alertKeyByProject = {
+    '02': 'alert.private',
+    '03': 'alert.unavailable'
+};
+
 function buildProjectCard(p) {
     const galleryBtn = `<a href="#"
         class="btn btn-primary js-open-gallery-modal"
         data-gallery="${p.gallery.join(', ')}"
         data-gallery-alt="${p.galleryAlt}"
-        aria-haspopup="dialog"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Voir</a>`;
+        aria-haspopup="dialog"><i class="fas fa-external-link-alt" aria-hidden="true"></i> <span data-i18n="btn.view">${t('btn.view')}</span></a>`;
 
     const links = [galleryBtn];
     p.links.forEach(l => {
         if (l.type === 'github') {
-            links.push(`<a href="${l.url}" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i> ${l.label}</a>`);
+            links.push(`<a href="${l.url}" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i> <span data-i18n="btn.source">${t('btn.source')}</span></a>`);
         } else if (l.type === 'private') {
-            links.push(`<a href="javascript:void(0)" class="btn btn-ghost btn-private" title="Privé"><i class="fas fa-lock" aria-hidden="true"></i> ${l.label}</a>`);
+            links.push(`<a href="javascript:void(0)" class="btn btn-ghost btn-private" title="${t('btn.private')}" data-i18n-title="btn.private"><i class="fas fa-lock" aria-hidden="true"></i> <span data-i18n="btn.private">${t('btn.private')}</span></a>`);
         } else if (l.type === 'alert') {
-            links.push(`<a href="#" class="btn btn-ghost js-alert-link" data-msg="${l.msg}"><i class="fab fa-github" aria-hidden="true"></i> ${l.label}</a>`);
+            const alertKey = alertKeyByProject[p.num] || 'alert.unavailable';
+            links.push(`<a href="#" class="btn btn-ghost js-alert-link" data-alert-key="${alertKey}"><i class="fab fa-github" aria-hidden="true"></i> <span data-i18n="btn.source">${t('btn.source')}</span></a>`);
         } else if (l.type === 'contact') {
-            links.push(`<a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope" aria-hidden="true"></i> ${l.label}</a>`);
+            links.push(`<a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="btn.contact">${t('btn.contact')}</span></a>`);
         }
     });
 
     return `
-        <article class="proj-card reveal" data-num="${p.num}">
+        <article class="proj-card reveal">
             <figure class="proj-media">
                 <img src="${p.image}" alt="${p.alt}" loading="lazy" decoding="async">
             </figure>
             <div class="proj-info">
                 <div class="proj-meta">
-                    <h3 class="proj-title">${p.title}</h3>
-                    <span class="proj-type">${p.type}</span>
+                    <h3 class="proj-title" data-i18n="proj.${p.num}.title">${p.title}</h3>
+                    <span class="proj-type" data-i18n="proj.${p.num}.type">${p.type}</span>
                 </div>
-                <p class="proj-desc">${p.desc}</p>
+                <p class="proj-desc" data-i18n="proj.${p.num}.desc">${p.desc}</p>
                 <div class="proj-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
                 <div class="proj-actions">${links.join('')}</div>
             </div>
@@ -60,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const alertLink = e.target.closest('.js-alert-link');
         if (alertLink) {
             e.preventDefault();
-            alert(alertLink.dataset.msg || 'Le code source est actuellement indisponible.');
+            alert(t(alertLink.dataset.alertKey || 'alert.unavailable'));
         }
     });
 
@@ -245,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const btn = form.querySelector('button[type="submit"]');
             const original = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Envoi en cours...';
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> ${t('form.sending')}`;
             btn.disabled = true;
 
             try {
@@ -256,11 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 if (!res.ok) throw new Error('Request failed');
 
-                btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Message envoyé !';
-                btn.style.background = '#0D9060';
+                btn.innerHTML = `<i class="fas fa-check" aria-hidden="true"></i> ${t('form.success')}`;
+                btn.style.background = 'var(--green)';
                 form.reset();
             } catch {
-                btn.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i> Erreur, réessayez';
+                btn.innerHTML = `<i class="fas fa-times" aria-hidden="true"></i> ${t('form.error')}`;
                 btn.style.background = '#C7402E';
             }
 
@@ -294,29 +300,120 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (toggleBtn && hiddenContainer) {
         let isExpanded = false;
+        const toggleLabel = toggleBtn.querySelector('span');
+        const toggleIcon = toggleBtn.querySelector('i');
+
+        const renderToggle = () => {
+            if (toggleLabel) toggleLabel.textContent = t(isExpanded ? 'projects.less' : 'projects.more');
+            if (toggleIcon) toggleIcon.className = isExpanded ? 'fas fa-arrow-up' : 'fas fa-arrow-down';
+            toggleBtn.setAttribute('aria-expanded', String(isExpanded));
+            toggleBtn.setAttribute('aria-label', t(isExpanded ? 'projects.less' : 'projects.more'));
+        };
 
         toggleBtn.addEventListener('click', () => {
             isExpanded = !isExpanded;
 
             if (isExpanded) {
                 hiddenContainer.classList.add('open');
-                toggleBtn.innerHTML = 'Voir moins <i class="fas fa-arrow-up" aria-hidden="true"></i>';
-                toggleBtn.setAttribute('aria-expanded', 'true');
-
                 hiddenContainer.querySelectorAll('.proj-card').forEach((item, index) => {
                     item.style.transitionDelay = `${index * 100}ms`;
                     item.classList.add('visible');
                 });
             } else {
                 hiddenContainer.classList.remove('open');
-                toggleBtn.innerHTML = 'Voir plus <i class="fas fa-arrow-down" aria-hidden="true"></i>';
-                toggleBtn.setAttribute('aria-expanded', 'false');
-
                 const projectsSection = document.getElementById('projects');
                 if (projectsSection && typeof projectsSection.scrollIntoView === 'function') {
                     projectsSection.scrollIntoView({ behavior: 'smooth' });
                 }
             }
+            renderToggle();
+        });
+
+        renderToggle();
+    }
+
+    window.onLanguageChanged = () => {
+        if (hiddenContainer && hiddenContainer.classList.contains('open')) {
+            const label = toggleBtn ? toggleBtn.querySelector('span') : null;
+            if (label) label.textContent = t('projects.less');
+        }
+    };
+
+    /* ── Settings (theme + language) ── */
+    const settingsModal = document.getElementById('settingsModal');
+    const settingsBtnEl = document.getElementById('settingsBtn');
+
+    const syncSettingsUI = (mode, lang) => {
+        if (!settingsModal) return;
+        settingsModal.querySelectorAll('.seg-btn[data-theme-choice]').forEach(b => {
+            const active = b.dataset.themeChoice === mode;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-pressed', String(active));
+        });
+        settingsModal.querySelectorAll('.seg-btn[data-lang-choice]').forEach(b => {
+            const active = b.dataset.langChoice === lang;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-pressed', String(active));
+        });
+    };
+
+    const closeSettings = () => {
+        if (!settingsModal) return;
+        settingsModal.classList.remove('open');
+        settingsModal.setAttribute('aria-hidden', 'true');
+        if (settingsBtnEl) settingsBtnEl.setAttribute('aria-expanded', 'false');
+    };
+
+    if (settingsBtnEl && settingsModal) {
+        settingsBtnEl.addEventListener('click', () => {
+            if (settingsModal.classList.contains('open')) {
+                closeSettings();
+                return;
+            }
+            if (burger && navMenu.classList.contains('open')) {
+                burger.classList.remove('open');
+                burger.setAttribute('aria-expanded', 'false');
+                navMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            settingsModal.classList.add('open');
+            settingsModal.setAttribute('aria-hidden', 'false');
+            settingsBtnEl.setAttribute('aria-expanded', 'true');
+            settingsModal.querySelector('.settings-content')?.focus();
+        });
+
+        settingsModal.querySelectorAll('.js-close-settings').forEach(el => el.addEventListener('click', closeSettings));
+
+        settingsModal.querySelectorAll('.seg-btn[data-theme-choice]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const mode = btn.dataset.themeChoice;
+                try { localStorage.setItem('rmTheme', mode); } catch (e) { /* stockage indisponible */ }
+                applyTheme(mode);
+                syncSettingsUI(mode, getLang());
+            });
+        });
+
+        settingsModal.querySelectorAll('.seg-btn[data-lang-choice]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLang(btn.dataset.langChoice);
+                syncSettingsUI(getThemeMode(), getLang());
+            });
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && settingsModal.classList.contains('open')) closeSettings();
         });
     }
+
+    const schemeMq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    const onSchemeChange = () => { if (getThemeMode() === 'system') applyTheme('system'); };
+    if (schemeMq) {
+        if (typeof schemeMq.addEventListener === 'function') schemeMq.addEventListener('change', onSchemeChange);
+        else if (typeof schemeMq.addListener === 'function') schemeMq.addListener(onSchemeChange);
+    }
+
+    /* ── Init locals ── */
+    applyI18n();
+    applyTheme(getThemeMode());
+    syncSettingsUI(getThemeMode(), getLang());
 });

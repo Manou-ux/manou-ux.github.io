@@ -110,7 +110,7 @@ const PROJECTS = [
         links: [
             { type: 'github', label: 'Code Source', url: 'https://github.com/Manou-ux/SONATRA_PLUS-Windows-Form-CSharp.git' }
         ],
-        featured: true
+        featured: false
     },
 
     {

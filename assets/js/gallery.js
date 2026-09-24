@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageSources = rawGallery.split(',').map(item => item.trim()).filter(Boolean);
             const fallbackCardImage = button.closest('.proj-card')?.querySelector('.proj-media img');
             const fallbackSrc = fallbackCardImage?.getAttribute('src');
-            const fallbackAlt = button.dataset.galleryAlt || fallbackCardImage?.getAttribute('alt') || 'Capture d\'écran';
+            const fallbackAlt = button.dataset.galleryAlt || fallbackCardImage?.getAttribute('alt') || t('gallery.thumbFallback');
             const sources = imageSources.length > 0 ? imageSources : (fallbackSrc ? [fallbackSrc] : []);
 
             currentGalleryItems = sources.map((src, idx) => ({
